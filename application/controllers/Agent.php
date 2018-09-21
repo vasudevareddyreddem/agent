@@ -100,6 +100,17 @@ class Agent extends CI_Controller
 	$this->load->view('html/footer');
 				
 	}
+	public function finalappointment()
+	{
+		
+	
+	$this->load->view('html/header');
+	$this->load->view('html/sidebar');
+	$this->load->view('agent/final-app-list');
+	$this->load->view('html/footer');
+	
+	
+	}
 	
 	
 	public function logout()
@@ -113,6 +124,14 @@ class Agent extends CI_Controller
 		$this->session->unset_userdata('userdetails');
         redirect('agent');
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
   }

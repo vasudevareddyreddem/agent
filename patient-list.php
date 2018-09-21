@@ -1,4 +1,5 @@
-
+<?php include('header.php'); ?>
+<?php include('sidebar.php'); ?>
 			<div class="page-content-wrapper">
                 <div class="page-content">
                     
@@ -203,3 +204,4 @@
     </div>
 </div>
 
+<?php include('footer.php'); ?>

@@ -26,6 +26,11 @@
 	                            </a>
 	                        </li>
                             <li class="nav-item  ">
+	                            <a href="<?php echo base_url('agent/finalappointment'); ?>" class="nav-link "> <i class="material-icons">person</i>
+	                                <span class="title">Finalized Appointment List</span> <span class="arrow"></span>
+	                            </a>
+	                        </li>
+                            <li class="nav-item  ">
 	                            <a href="<?php echo base_url('agent/patientlist'); ?>" class="nav-link "> <i class="material-icons">person</i>
 	                                <span class="title">Patient History</span> <span class="arrow"></span>
 	                            </a>
