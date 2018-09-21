@@ -20,6 +20,7 @@
                                                 <th>S.No</th>
 												<th>Patient Name</th>
                                                 <th>Mobile No </th>
+                                                <th>Hospital Name</th>
                                                 <th>Department</th>
                                                 <th>Date</th>
                                                 <th>Time</th>
@@ -27,50 +28,117 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-										<?php $cnt=1;foreach($app_appointment_list as $list){ ?>
                                             <tr>
-                                                <td><?php echo $cnt; ?></td>
-                                                <td><?php echo $list['patinet_name']; ?></td>
-                                                <td><?php echo $list['mobile']; ?></td>
-                                                <td><?php echo $list['t_name']; ?></td>
-                                                <td><?php echo $list['date']; ?></td>
-                                                <td><?php echo $list['time']; ?></td>
+                                                <td>1</td>
+                                                <td>xxxxx</td>
+                                                <td>xxxxxx</td>
+                                                <td>
+                                                    <ol>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                    </ol>
+                                                </td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
                                                 <td class="valigntop">
                                                     <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
+                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="modal" data-target="#myModal"> <i class="fas fa-eye"></i> View
                                                         </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-check"></i> Received</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-times"></i>Not Received</a>
-                                                            </li>
-                                                        </ul>
                                                     </div>
                                                 </td>
                                             </tr>
-											<?php $cnt++;} ?>
-                                            
-                                           
-                                        </tbody>
-										 <tfoot>
                                             <tr>
-                                                <th>S.No</th>
-												<th>Patient Name</th>
-                                                <th>Mobile No </th>
-                                                <th>Hospital Name</th>
-                                                <th>Date</th>
-                                                <th>Time</th>
-                                                <th>Action</th>
+                                                <td>2</td>
+                                                <td>xxxxx</td>
+                                                <td>xxxxxx</td>
+                                                <td>
+                                                    <ol>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                    </ol>
+                                                </td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td class="valigntop">
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-eye"></i> View
+                                                        </button>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                        </tfoot>
-										
-										
-										
+                                            <tr>
+                                                <td>3</td>
+                                                <td>xxxxx</td>
+                                                <td>xxxxxx</td>
+                                                <td>
+                                                    <ol>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                    </ol>
+                                                </td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td class="valigntop">
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-eye"></i> View
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>xxxxx</td>
+                                                <td>xxxxxx</td>
+                                                <td>
+                                                    <ol>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                    </ol>
+                                                </td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td class="valigntop">
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-eye"></i> View
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>xxxxx</td>
+                                                <td>xxxxxx</td>
+                                                <td>
+                                                    <ol>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                        <li>xxxxxxx</li>
+                                                    </ol>
+                                                </td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td class="valigntop">
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-eye"></i> View
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
 								<div class="clearfix">&nbsp;</div>
@@ -81,3 +149,57 @@
                     
                 </div>
             </div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 style="pull-left" class="modal-title">Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div id="" class="col-xs-12 col-xl-12 form-group">
+                        <table id="" class="table" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Patient Name</th>
+                                    <th>Mobile No </th>
+                                    <th>Hospital Name</th>
+                                    <th>Department</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>xxxxx</td>
+                                    <td>xxxxxx</td>
+                                    <td>
+                                        <ol>
+                                            <li>xxxxxxx <i class="fas fa-circle fa-1x text-success"></i></li>
+                                            <li>xxxxxxx <i class="fas fa-circle fa-1x text-danger"></i></li>
+                                            <li>xxxxxxx <i class="fas fa-circle fa-1x text-success"></i></li>
+                                            <li>xxxxxxx <i class="fas fa-circle fa-1x text-danger"></i></li>
+                                        </ol>
+                                    </td>
+                                    <td>xxxx</td>
+                                    <td>xxxx</td>
+                                    <td>xxxx</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

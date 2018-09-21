@@ -14,7 +14,6 @@
                                     </div>
                                 </div>
                                 <div class="card-body ">
-								
                                     <table id="saveStage" class="display" style="width:100%;">
                                         <thead>
                                             <tr>
@@ -37,25 +36,9 @@
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-check"></i> Received</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-times"></i>Not Received</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
+                                                <td>Received</td>
                                             </tr>
-											<tr>
+                                            <tr>
                                                 <td>2</td>
                                                 <td>xxxxx</td>
                                                 <td>xxxxxx</td>
@@ -63,23 +46,7 @@
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-check"></i> Received</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-times"></i>Not Received</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
+                                                <td>Received</td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
@@ -89,23 +56,7 @@
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-check"></i> Received</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-times"></i>Not Received</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
+                                                <td>Not Received</td>
                                             </tr>
                                             <tr>
                                                 <td>4</td>
@@ -115,23 +66,7 @@
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-check"></i> Received</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-times"></i>Not Received</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
+                                                <td>Not Received</td>
                                             </tr>
                                             <tr>
                                                 <td>5</td>
@@ -141,23 +76,7 @@
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
                                                 <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-check"></i> Received</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-times"></i>Not Received</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
+                                                <td>Received</td>
                                             </tr>
                                         </tbody>
                                     </table>

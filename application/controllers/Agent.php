@@ -83,20 +83,44 @@ class Agent extends CI_Controller
 	{	
 	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();
 	//echo '<pre>';print_r($data['app_appointment_list']);exit; 
+	                
+							$this->load->view('html/header');
+	                        $this->load->view('html/sidebar');
+	                        $this->load->view('agent/patient-list',$data);
+	                        $this->load->view('html/footer');
+				
+						//echo "<pre>";print_r($data);exit; 
+			
+	}
+	
+	public function view()
+	{
+		
+    $b_id=base64_decode($this->uri->segment(3));
+	$data['app_appointment_view_list']=$this->Agent_model->get_app_appointment_view_list(base64_decode($this->uri->segment(3)));
+	//echo '<pre>';print_r($data);exit;
 	$this->load->view('html/header');
 	$this->load->view('html/sidebar');
-	$this->load->view('agent/patient-list',$data);
+	$this->load->view('agent/view-patient',$data);
 	$this->load->view('html/footer');
-				
-	}
+   
+					
+}
+	
+	
+	
+	
+	
+	
+	
+	
 	public function patientlist()
 	{	
-	$data['appointment_list']=$this->Agent_model->get_appointment_list();
-	//echo '<pre>';print_r($data);exit; 
+	
 	
 	$this->load->view('html/header');
 	$this->load->view('html/sidebar');
-	$this->load->view('agent/patient-history',$data);
+	$this->load->view('agent/patient-history');
 	$this->load->view('html/footer');
 				
 	}

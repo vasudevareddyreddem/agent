@@ -30,9 +30,11 @@ class Agent_model extends CI_Model
 	}
 	
 	public  function get_app_appointment_list(){
-		$this->db->select('appointment_bidding_list.*,treament.t_name,specialist.specialist_name')->from('appointment_bidding_list');
+		$this->db->select('appointment_bidding_list.*,treament.t_name,specialist.specialist_name,hospital.hos_bas_name')->from('appointment_bidding_list');
 		$this->db->join('treament', 'treament.t_id = appointment_bidding_list.department', 'left');
 		$this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
+		$this->db->join('hospital', 'hospital.hos_id = appointment_bidding_list.hos_id', 'left');
+		$this->db->where('appointment_bidding_list.status !=',2);
 		return $this->db->get()->result_array();
 	}
 	 public function executive_list_data(){
@@ -46,5 +48,19 @@ class Agent_model extends CI_Model
 		$this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
 		return $this->db->get()->result_array();
 	}
+	
+	public function get_app_appointment_view_list($b_id){
+		$this->db->select('appointment_bidding_list.*,treament.t_name,specialist.specialist_name,hospital.hos_bas_name')->from('appointment_bidding_list');
+		$this->db->join('treament', 'treament.t_id = appointment_bidding_list.department', 'left');
+		$this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
+		$this->db->join('hospital', 'hospital.hos_id = appointment_bidding_list.hos_id', 'left');
+	   $this->db->where('appointment_bidding_list.b_id',$b_id);
+		return $this->db->get()->row_array();
+	}
+	
+	
+	
+	
+	
 	
 }
