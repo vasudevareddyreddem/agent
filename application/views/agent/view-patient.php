@@ -27,8 +27,8 @@
 						<?php $cnt=1;foreach($app_appointment_view_list as $lis){ ?>
                                 <tr>
                                             <td><?php echo $cnt; ?></td>
-                                                <td><?php echo $lis['patinet_name']; ?></td>
-                                                <td><?php echo $lis['mobile']; ?></td>
+                                            <td><?php echo $lis['patinet_name']; ?></td>
+                                            <td><?php echo $lis['mobile']; ?></td>
                                     <td>
                                         <ol>
                                             <li><?php echo $lis['hos_bas_name']; ?><i class="fas fa-circle fa-1x text-success"></i></li>
