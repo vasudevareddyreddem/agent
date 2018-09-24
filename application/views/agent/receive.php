@@ -22,25 +22,39 @@
                                                 <th>Mobile No </th>
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
-                                               <th>Appointment Date&Time </th>
+                                                <th>Date</th>
+                                                <th>Time</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-										<?php $cnt=1; foreach($app_appointment_patient_history as $list){?>
                                             <tr>
-                                                <td><?php echo $cnt;?></td>
-                                               <td><?php echo $list['patinet_name']; ?></td>
-                                                <td><?php echo $list['mobile']; ?></td>
-                                                <td><?php echo $list['hos_bas_name']; ?></td>
-                                                 <td><?php echo $list['t_name']; ?></td> 
-                                                <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
-                                                <td><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?></td>
+                                                <td>1</td>
+                                                <td>xxxxx</td>
+                                                <td>xxxxxx</td>
+                                                <td>xxxxx</td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td>xxxx</td>
+                                                <td class="valigntop">
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li>
+                                                                <a href="javascript:;">
+                                                                    <i class="fa fa-check"></i> Received</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:;">
+                                                                    <i class="fa fa-times"></i>Not Received</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                           
-                                            
-                                           
-										<?php $cnt++;} ?>
+											
                                         </tbody>
                                     </table>
                                 </div>

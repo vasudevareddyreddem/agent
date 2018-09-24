@@ -105,38 +105,64 @@ class Agent extends CI_Controller
 	$this->load->view('html/footer');
    
 					
-}
-	
-	
-	
-	
-	
-	
-	
+   }
 	
 	public function patientlist()
 	{	
 	
-	
+	$data['app_appointment_patient_history']=$this->Agent_model->get_app_appointment_patient_history();
 	$this->load->view('html/header');
 	$this->load->view('html/sidebar');
-	$this->load->view('agent/patient-history');
+	$this->load->view('agent/patient-history',$data);
 	$this->load->view('html/footer');
 				
 	}
 	public function finalappointment()
 	{
+	$data['app_appointment_accept_list']=$this->Agent_model->get_app_appointment_accept_list();
+	//echo '<pre>';print_r($data);exit; 
 		
 	
 	$this->load->view('html/header');
 	$this->load->view('html/sidebar');
-	$this->load->view('agent/final-app-list');
+	$this->load->view('agent/final-app-list',$data);
 	$this->load->view('html/footer');
 	
-	
 	}
-	
-	
+	public function status()
+	{	
+		
+					$b_id=base64_decode($this->uri->segment(3));
+					$event_status=base64_decode($this->uri->segment(4));
+					if($event_status==1){
+						$statu=2;
+					}else{
+						$statu=1;
+					}
+					if($b_id!=''){
+						$stusdetails=array(
+							'event_status'=>$statu,
+							'create_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Agent_model->update_final_app_list_details($b_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($event_status==1){
+								$this->session->set_flashdata('success',"Patient history successfully Not Received.");
+								}else{
+									$this->session->set_flashdata('success',"Patient history successfully Received.");
+								}
+								redirect('agent/finalappointment/');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('agent/finalappointment/');
+							}
+					
+		
+	      }
+	}
 	public function logout()
 	{
 		$admindetails=$this->session->userdata('userdetails');

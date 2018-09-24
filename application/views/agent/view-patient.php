@@ -1,12 +1,11 @@
 
-
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 style="pull-left" class="modal-title">Confirmation</h4>
-               <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+               
+              
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -14,42 +13,39 @@
                         <table id="" class="table" style="width:100%;">
                             <thead>
                                 <tr>
-                                    <th>S.No</th>
                                     <th>Patient Name</th>
                                     <th>Mobile No </th>
                                     <th>Hospital Name</th>
                                     <th>Department</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
+                                    <th>Appointment Date&Time </th>
                                 </tr>
                             </thead>
                             <tbody>
-						<?php $cnt=1;foreach($app_appointment_view_list as $lis){ ?>
+							
                                 <tr>
-                                            <td><?php echo $cnt; ?></td>
-                                            <td><?php echo $lis['patinet_name']; ?></td>
-                                            <td><?php echo $lis['mobile']; ?></td>
+                                    <td><?php echo $app_appointment_view_list['patinet_name']; ?></td>
+                                    <td><?php echo $app_appointment_view_list['mobile']; ?></td>
                                     <td>
                                         <ol>
-                                            <li><?php echo $lis['hos_bas_name']; ?><i class="fas fa-circle fa-1x text-success"></i></li>
-                                           
+										<?php if($app_appointment_view_list['status']==1){ ?>
+                                            <li><?php echo $app_appointment_view_list['hos_bas_name']; ?> <i class="fas fa-circle fa-1x text-success"></i></li>
+                                           <?php }else{?>
+										  
+										    <li><?php echo $app_appointment_view_list['hos_bas_name']; ?><i class="fas fa-circle fa-1x text-danger"></i></li>
+										   <?php }?>
                                         </ol>
                                     </td>
-                                    <td><?php echo $lis['t_name']; ?></td>
-                                               
-                                   <td><?php echo $lis['date']; ?></td>
-								   <td><?php echo $lis['time']; ?></td>
+                                    <td><?php echo $app_appointment_view_list['t_name']; ?></td>
+                                     <td><?php echo $app_appointment_view_list['date']; ?>&nbsp;<?php echo $app_appointment_view_list['time']; ?></td>
                                 </tr>
-							<?php $cnt++;} ?>
+								
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <a  href="<?php echo base_url('agent/patient/');  ?>" type="button" class="btn btn-default" data-dismiss="modal">Close</a>
             </div>
         </div>
     </div>
-
-
