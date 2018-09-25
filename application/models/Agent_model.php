@@ -92,8 +92,17 @@ class Agent_model extends CI_Model
     	return $this->db->update("agent",$data);
 	}
 	
-	
-	
+		public function get_all_admin_details($admin_id){
+		$this->db->select('agent.a_id,agent.a_email_id,agent.a_name,agent.out_source,agent.a_profile_pic')->from('agent');		
+		$this->db->where('a_id', $admin_id);
+		$this->db->where('a_status', 1);
+        return $this->db->get()->row_array();	
+	}
+	public function get_admin_details_data($admin_id){
+		$this->db->select('*')->from('agent');
+		$this->db->where('a_id', $admin_id);
+		return $this->db->get()->row_array();	
+	}
 	
 	
  }
