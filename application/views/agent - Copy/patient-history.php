@@ -21,63 +21,26 @@
 												<th>Patient Name</th>
                                                 <th>Mobile No </th>
                                                 <th>Hospital Name</th>
-                                                <th>Coupon Code</th>
-                                                <th>Date</th>
-                                                <th>Time</th>
+                                                <th>Department</th>
+                                               <th>Appointment Date&Time </th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+										<?php $cnt=1; foreach($app_appointment_patient_history as $list){?>
                                             <tr>
-                                                <td>1</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>Received</td>
+                                                <td><?php echo $cnt;?></td>
+                                               <td><?php echo $list['patinet_name']; ?></td>
+                                                <td><?php echo $list['mobile']; ?></td>
+                                                <td><?php echo $list['hos_bas_name']; ?></td>
+                                                 <td><?php echo $list['t_name']; ?></td> 
+                                                <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
+                                                <td><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?></td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>Received</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>Not Received</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>Not Received</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>Received</td>
-                                            </tr>
+                                           
+                                            
+                                           
+										<?php $cnt++;} ?>
                                         </tbody>
                                     </table>
                                 </div>

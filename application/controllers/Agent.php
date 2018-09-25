@@ -77,8 +77,64 @@ class Agent extends CI_Controller
 			}
 		}
 	}
+	public function changepassword()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			      $this->load->view('html/header');
+	              $this->load->view('html/sidebar');
+				 $this->load->view('html/changepassword');
+				$this->load->view('html/footer');
+			
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('agent');
+		}
+	}
 	
-	
+	public function changepasswordpost(){
+	 
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			$post=$this->input->post();
+			$admin_details = $this->Agent_model->get_adminpassword_details($admindetails['a_id']);
+			if($admin_details['a_password']== md5($post['oldpassword'])){
+				if(md5($post['password'])==md5($post['confirmpassword'])){
+						$updateuserdata=array(
+						'a_password'=>md5($post['confirmpassword']),
+						'a_org_password'=>$post['confirmpassword'],
+						'a_updated_at'=>date('Y-m-d H:i:s'),
+						);
+						//echo '<pre>';print_r($updateuserdata);exit;
+						$upddateuser = $this->Agent_model->update_admin_details($admindetails['a_id'],$updateuserdata);
+						if(count($upddateuser)>0){
+							$this->session->set_flashdata('success',"password successfully updated");
+							redirect('index');
+						}else{
+							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+							redirect('index');
+						}
+					
+				}else{
+					$this->session->set_flashdata('error',"Password and Confirm password are not matched");
+					redirect('index');
+				}
+				
+			}else{
+				$this->session->set_flashdata('error',"Old password are not matched");
+				redirect('agent/changepassword');
+			}
+				
+			
+		}else{
+			 $this->session->set_flashdata('error','Please login to continue');
+			 redirect('');
+		} 
+	 
+	}
+
 	public function patient()
 	{	
 	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();
@@ -174,11 +230,6 @@ class Agent extends CI_Controller
 		$this->session->unset_userdata('userdetails');
         redirect('agent');
 	}
-	
-	
-	
-	
-	
 	
 	
 	

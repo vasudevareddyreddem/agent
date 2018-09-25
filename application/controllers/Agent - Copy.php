@@ -14,7 +14,9 @@ class Agent extends CI_Controller
 	{	
 		if(!$this->session->userdata('userdetails'))
 		{
-			$this->load->view('html/login');
+			 $data['executive_list']=$this->Agent_model->executive_list_data();
+				//echo'<pre>';print_r($data);exit;
+			$this->load->view('html/login',$data);
 		}else{
 			$this->session->set_flashdata('error',"you don't have permission to access");
 			redirect('agent/patientlist/');
@@ -25,14 +27,18 @@ class Agent extends CI_Controller
 	{
 		if(!$this->session->userdata('userdetails'))
 		{
+						
 			$post=$this->input->post();
 			//echo '<pre>';print_r($post);
+			 $data['executive_list']=$this->Agent_model->executive_list_data();
+				//echo'<pre>';print_r($data);exit;
 			$login_deta=array('email'=>$post['email'],'password'=>md5($post['password']));
+			//echo '<pre>';print_r($login_deta);exit;
 			$check_login=$this->Agent_model->login_details($login_deta);
+			//echo '<pre>';print_r($check_login);exit;
 				$this->load->helper('cookie');
 
-		
-			if(count($check_login)>0){
+				if(count($check_login)>0){
 				$login_details=$this->Agent_model->get_agent_details($check_login['a_id']);
 				$this->session->set_userdata('userdetails',$login_details);
 				redirect('agent');
@@ -73,48 +79,92 @@ class Agent extends CI_Controller
 	}
 	
 	
-				
-
-	
-	
-	
-	
 	public function patient()
 	{	
 	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();
 	//echo '<pre>';print_r($data['app_appointment_list']);exit; 
+	                
+							$this->load->view('html/header');
+	                        $this->load->view('html/sidebar');
+	                        $this->load->view('agent/patient-list',$data);
+	                        $this->load->view('html/footer');
+				
+						//echo "<pre>";print_r($data);exit; 
+			
+	}
+	
+	public function view()
+	{
+		
+    $b_id=base64_decode($this->uri->segment(3));
+	$data['app_appointment_view_list']=$this->Agent_model->get_app_appointment_view_list(base64_decode($this->uri->segment(3)));
+	//echo '<pre>';print_r($data);exit;
 	$this->load->view('html/header');
 	$this->load->view('html/sidebar');
-	$this->load->view('agent/patient-list',$data);
+	$this->load->view('agent/view-patient',$data);
 	$this->load->view('html/footer');
-				
-	}
+   
+					
+   }
+	
 	public function patientlist()
 	{	
-	//$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();
-	//echo '<pre>';print_r($data['app_appointment_list']);exit; 
 	
+	$data['app_appointment_patient_history']=$this->Agent_model->get_app_appointment_patient_history();
 	$this->load->view('html/header');
 	$this->load->view('html/sidebar');
-	$this->load->view('agent/patient-history');
+	$this->load->view('agent/patient-history',$data);
 	$this->load->view('html/footer');
 				
 	}
-	public function changepassword()
+	public function finalappointment()
 	{
-		if($this->session->userdata('userdetails'))
-		{
-			$admindetails=$this->session->userdata('userdetails');
-				$this->load->view('html/changepassword');
-				$this->load->view('html/footer');
-			
-		}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
-			redirect('admin');
-		}
-	}
+	$data['app_appointment_accept_list']=$this->Agent_model->get_app_appointment_accept_list();
+	//echo '<pre>';print_r($data);exit; 
+		
 	
-	public function logout(){
+	$this->load->view('html/header');
+	$this->load->view('html/sidebar');
+	$this->load->view('agent/final-app-list',$data);
+	$this->load->view('html/footer');
+	
+	}
+	public function status()
+	{	
+		
+					$b_id=base64_decode($this->uri->segment(3));
+					$event_status=base64_decode($this->uri->segment(4));
+					if($event_status==1){
+						$statu=2;
+					}else{
+						$statu=1;
+					}
+					if($b_id!=''){
+						$stusdetails=array(
+							'event_status'=>$statu,
+							'create_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Agent_model->update_final_app_list_details($b_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($event_status==1){
+								$this->session->set_flashdata('success',"Patient history successfully Not Received.");
+								}else{
+									$this->session->set_flashdata('success',"Patient history successfully Received.");
+								}
+								redirect('agent/finalappointment/');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('agent/finalappointment/');
+							}
+					
+		
+	      }
+	}
+	public function logout()
+	{
 		$admindetails=$this->session->userdata('userdetails');
 		$up_details=array('a_id'=>0);
 		$update=$this->Agent_model->update_login_details($admindetails['a_id'],$up_details);
@@ -127,6 +177,13 @@ class Agent extends CI_Controller
 	
 	
 	
-}
+	
+	
+	
+	
+	
+	
+	
+  }
 
 ?>

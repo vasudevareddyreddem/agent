@@ -20,13 +20,13 @@ class Agent_model extends CI_Model
 		return $this->db->query($sql)->row_array();	
 	}
 	public function email_check_details($email){
-		$sql = "SELECT * FROM admin WHERE a_email_id ='".$email."'";
+		$sql = "SELECT * FROM agent WHERE a_email_id ='".$email."'";
 		return $this->db->query($sql)->row_array();	
 	}
 	
 	public function update_login_details($a_id,$data){
 		$this->db->where('a_id',$a_id);
-    	return $this->db->update("hospital",$data);
+    	return $this->db->update("agent",$data);
 	}
 	
 	public  function get_app_appointment_list(){
@@ -80,9 +80,20 @@ class Agent_model extends CI_Model
 	    return $this->db->get()->result_array();
 	}
 	
+	public function get_adminpassword_details($admin_id){
+		$this->db->select('agent.a_id,agent.a_password')->from('agent');
+		$this->db->where('a_id', $admin_id);
+		$this->db->where('a_status', 1);
+		return $this->db->get()->row_array();	
+	}
+	
+	public function update_admin_details($a_id,$data){
+		$this->db->where('a_id',$a_id);
+    	return $this->db->update("agent",$data);
+	}
 	
 	
 	
 	
 	
-}
+ }

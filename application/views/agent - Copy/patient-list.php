@@ -22,122 +22,37 @@
                                                 <th>Mobile No </th>
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
-                                                <th>Date</th>
-                                                <th>Time</th>
+                                                <th>Appointment Date&Time </th>
+												
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+										<?php $cnt=1;foreach($app_appointment_list as $list){ ?>
+										
                                             <tr>
-                                                <td>1</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
+                                                <td><?php echo $cnt; ?></td>
+                                                <td><?php echo $list['patinet_name']; ?></td>
+                                                <td><?php echo $list['mobile']; ?></td>
                                                 <td>
                                                     <ol>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
+                                                        <li><?php echo $list['hos_bas_name']; ?></li>
+                                                        
                                                     </ol>
                                                 </td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
+                                                <td><?php echo $list['t_name']; ?></td>
+                                               
+                                                <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
                                                 <td class="valigntop">
                                                     <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="modal" data-target="#myModal"> <i class="fas fa-eye"></i> View
-                                                        </button>
+														  <a href="<?php echo base_url('agent/view/'.base64_encode($list['b_id']));?>" class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" data-toggle="tooltip"><i class="fas fa-eye"></i>View</a>
+                                                       
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>
-                                                    <ol>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                    </ol>
-                                                </td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-eye"></i> View
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>
-                                                    <ol>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                    </ol>
-                                                </td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-eye"></i> View
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>
-                                                    <ol>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                    </ol>
-                                                </td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-eye"></i> View
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>xxxxx</td>
-                                                <td>xxxxxx</td>
-                                                <td>
-                                                    <ol>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                        <li>xxxxxxx</li>
-                                                    </ol>
-                                                </td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td>xxxx</td>
-                                                <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-eye"></i> View
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                          
+											<?php $cnt++;} ?>
+											
                                         </tbody>
                                     </table>
                                 </div>
@@ -175,6 +90,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+							
                                 <tr>
                                     <td>1</td>
                                     <td>xxxxx</td>
