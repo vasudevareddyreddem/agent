@@ -50,7 +50,7 @@ class Agent extends CI_Controller
 	}
 	public function forgotpassword()
 	{	
-		if(!$this->session->userdata('userdetails'))
+		if($this->session->userdata('userdetails'))
 		{
 			$post=$this->input->post();
 			$check_login=$this->Agent_model->email_check_details($post['forgot_password_email']);
@@ -111,15 +111,15 @@ class Agent extends CI_Controller
 						$upddateuser = $this->Agent_model->update_admin_details($admindetails['a_id'],$updateuserdata);
 						if(count($upddateuser)>0){
 							$this->session->set_flashdata('success',"password successfully updated");
-							redirect('index');
+							redirect('agent');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-							redirect('index');
+							redirect('agent');
 						}
 					
 				}else{
 					$this->session->set_flashdata('error',"Password and Confirm password are not matched");
-					redirect('index');
+					redirect('agent/changepassword');
 				}
 				
 			}else{
@@ -140,12 +140,12 @@ class Agent extends CI_Controller
 	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();
 	//echo '<pre>';print_r($data['app_appointment_list']);exit; 
 	                
-							$this->load->view('html/header');
-	                        $this->load->view('html/sidebar');
-	                        $this->load->view('agent/patient-list',$data);
-	                        $this->load->view('html/footer');
+	$this->load->view('html/header');
+	$this->load->view('html/sidebar');
+	$this->load->view('agent/patient-list',$data);
+	$this->load->view('html/footer');
 				
-						//echo "<pre>";print_r($data);exit; 
+	
 			
 	}
 	
@@ -219,6 +219,8 @@ class Agent extends CI_Controller
 		
 	      }
 	}
+	
+	
 	public function logout()
 	{
 		$admindetails=$this->session->userdata('userdetails');
