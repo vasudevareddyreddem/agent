@@ -35,8 +35,3 @@ CREATE TABLE `executive_list` (
   `updated_at` datetime DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`e_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
->>>>>>> e590c8fc2b58a0d30cd431ce8ca99737554b2dba
