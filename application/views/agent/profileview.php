@@ -7,11 +7,7 @@
 							 <div class=" pull-left">
 								<div class="page-title">Profile Details</div>
 							 </div>
-							 <ol class="breadcrumb page-breadcrumb pull-right">
-								
-								
-								<li class="active">Profile Details</li>
-							 </ol>
+							
 						  </div>
 						</div>
 						
@@ -21,7 +17,7 @@
                             <div class="card  card-topline-yellow">
                                 <div class="card-head">
                                     <header>View</header>
-									<a  href="<?php echo base_url('agent/edit/'.base64_encode($admin_detail['a_id'])); ?>">Edit</a>
+									<a  href="<?php echo base_url('agent/edit/'.base64_encode($agent_detail['e_id'])); ?>">Edit</a>
                                 </div>
                                 <div class="card-body ">
 											 <div class="col-sm-12">
@@ -32,7 +28,7 @@
 														 <strong>Name</strong>
 														 </div>
 														 <div class=" col-sm-6">
-														  <?php echo isset($admin_detail['a_name'])?$admin_detail['a_name']:''; ?>
+														  <?php echo isset($agent_detail['name'])?$agent_detail['name']:''; ?>
 														 </div>
 													 </div>
 													</div>
@@ -42,7 +38,7 @@
 														 <strong>Email Address</strong>
 														 </div>
 														<div class=" col-sm-6">
-														  <?php echo isset($admin_detail['a_email_id'])?$admin_detail['a_email_id']:''; ?>
+														  <?php echo isset($agent_detail['email_id'])?$agent_detail['email_id']:''; ?>
 														 </div>
 													 </div>
 													</div>
@@ -52,18 +48,14 @@
 														 <strong>Mobile Number</strong>
 														 </div>
 														<div class=" col-sm-6">
-														  <?php echo isset($admin_detail['a_mobile'])?$admin_detail['a_mobile']:''; ?>
+														  <?php echo isset($agent_detail['mobile'])?$agent_detail['mobile']:''; ?>
 														 </div>
-													 </div>
-													</div>
-													<div class="col-md-6">
-													<div class="row">												  
 														 <div class=" col-sm-6">
 														 <strong>Photo</strong>
 														 </div>
-														<div class=" col-sm-6">
-														  <?php if($admin_detail['a_profile_pic']!=''){ ?>
-														  <img src="<?php echo base_url('assets/adminprofilepic/'.$admin_detail['a_profile_pic']); ?>" height="50px" width="50px">
+														 <div class=" col-sm-6">
+														  <?php if($agent_detail['profile_pic']!=''){ ?>
+														  <img src="<?php echo base_url('assets/adminpic/'.$agent_detail['profile_pic']); ?>" height="50px" width="50px">
 														  <?php } ?>
 														 </div>
 													 </div>

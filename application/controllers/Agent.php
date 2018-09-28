@@ -6,10 +6,11 @@ class Agent extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Agent_model');
-		
+		$this->load->library('session');
+	    $this->session->userdata('userdetails');
 	
-	}
-
+	
+}
 	public function index()
 	{	
 		if(!$this->session->userdata('userdetails'))
@@ -18,11 +19,12 @@ class Agent extends CI_Controller
 				//echo'<pre>';print_r($data);exit;
 			$this->load->view('html/login',$data);
 		}else{
-			$this->session->set_flashdata('error',"you don't have permission to access");
+			
 			redirect('agent/patientlist/');
 		}
 	}
-
+	
+	
 	public function loginpost()
 	{
 		if(!$this->session->userdata('userdetails'))
@@ -32,14 +34,15 @@ class Agent extends CI_Controller
 			//echo '<pre>';print_r($post);
 			 $data['executive_list']=$this->Agent_model->executive_list_data();
 				//echo'<pre>';print_r($data);exit;
-			$login_deta=array('email'=>$post['email'],'password'=>md5($post['password']));
+			$login_deta=array('email_id'=>$post['email_id'],'password'=>md5($post['password']));
 			//echo '<pre>';print_r($login_deta);exit;
 			$check_login=$this->Agent_model->login_details($login_deta);
 			//echo '<pre>';print_r($check_login);exit;
 				$this->load->helper('cookie');
 
 				if(count($check_login)>0){
-				$login_details=$this->Agent_model->get_agent_details($check_login['a_id']);
+				$login_details=$this->Agent_model->get_agent_details($check_login['e_id']);
+				//echo '<pre>';print_r($login_details);exit;
 				$this->session->set_userdata('userdetails',$login_details);
 				redirect('agent');
 			}else{
@@ -50,103 +53,40 @@ class Agent extends CI_Controller
 	}
 	public function forgotpassword()
 	{	
-		if($this->session->userdata('userdetails'))
+		if(!$this->session->userdata('userdetails'))
 		{
-			$post=$this->input->post();
-			$check_login=$this->Agent_model->email_check_details($post['forgot_password_email']);
-			if(count($check_login)>0){
-				
-					$this->load->library('email');
-					$this->email->set_newline("\r\n");
-					$this->email->set_mailtype("html");
-					$this->email->to($check_login['a_email_id']);
-					$this->email->from('customerservice@gmail.com');
-					$body = "<b> Your Account login Password is </b> : ".$check_login['a_org_password'];
-					 $this->email->message($body);
-					if ($this->email->send())
-					{
-						$this->session->set_flashdata('success',"Password sent to your registered email address. Please check your registered email address");
-						redirect('agent');
-					}else{
-						$this->session->set_flashdata('error'," In Localhost mail  didn't sent");
-						redirect('agent');
-					}
-			}else{
-				$this->session->set_flashdata('error',"Invalid login details. Please try again once");
-				redirect('agent');
-			}
-		}
-	}
-	public function changepassword()
-	{
-		if($this->session->userdata('userdetails'))
-		{
-			$admindetails=$this->session->userdata('userdetails');
-			      $this->load->view('html/header');
-	              $this->load->view('html/sidebar');
-				 $this->load->view('html/changepassword');
-				$this->load->view('html/footer');
-			
+			$this->load->view('html/forgotpasword');
+
 		}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
 			redirect('agent');
 		}
 	}
 	
-	public function changepasswordpost(){
-	 
-		if($this->session->userdata('userdetails'))
-		{
-			$admindetails=$this->session->userdata('userdetails');
-			$post=$this->input->post();
-			$admin_details = $this->Agent_model->get_adminpassword_details($admindetails['a_id']);
-			if($admin_details['a_password']== md5($post['oldpassword'])){
-				if(md5($post['password'])==md5($post['confirmpassword'])){
-						$updateuserdata=array(
-						'a_password'=>md5($post['confirmpassword']),
-						'a_org_password'=>$post['confirmpassword'],
-						'a_updated_at'=>date('Y-m-d H:i:s'),
-						);
-						//echo '<pre>';print_r($updateuserdata);exit;
-						$upddateuser = $this->Agent_model->update_admin_details($admindetails['a_id'],$updateuserdata);
-						if(count($upddateuser)>0){
-							$this->session->set_flashdata('success',"password successfully updated");
-							redirect('agent');
-						}else{
-							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-							redirect('agent');
-						}
-					
-				}else{
-					$this->session->set_flashdata('error',"Password and Confirm password are not matched");
-					redirect('agent/changepassword');
-				}
+	public function forgotpost(){
+		$post=$this->input->post();
+		$check_email=$this->Agent_model->check_email_exits($post['email_id']);
+		//echo'<pre>';print_r($check_email);exit;
+			if(count($check_email)>0){
 				
-			}else{
-				$this->session->set_flashdata('error',"Old password are not matched");
-				redirect('agent/changepassword');
-			}
-				
-			
-		}else{
-			 $this->session->set_flashdata('error','Please login to continue');
-			 redirect('');
-		} 
-	 
-	}
+				$data['details']=$check_email;
+				$this->load->library('email');
+				$this->email->set_newline("\r\n");
+				$this->email->set_mailtype("html");
+				$this->email->from($post['email_id']);
+				$this->email->to('kayalan@gmail.com');
+				$this->email->subject('forgot - password');
+				$body = $this->load->view('email/forgot',$data,TRUE);
+				$this->email->message($body);
+				//echo print_r($body);exit;
+				$this->email->send();
+				$this->session->set_flashdata('success','Check Your Email to reset your password!');
+				redirect('agent/forgotpassword');
 
-	public function patient()
-	{	
-	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();
-	//echo '<pre>';print_r($data['app_appointment_list']);exit; 
-	                
-	$this->load->view('html/header');
-	$this->load->view('html/sidebar');
-	$this->load->view('agent/patient-list',$data);
-	$this->load->view('html/footer');
-				
-	
-			
+			}else{
+				$this->session->set_flashdata('error','The email you entered is not a registered email. Please try again. ');
+				redirect('agent');	
+			}
+		
 	}
 	
 	public function view()
@@ -163,6 +103,20 @@ class Agent extends CI_Controller
 					
    }
 	
+	
+	public function patient()
+	{	
+	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();
+	//echo '<pre>';print_r($data['app_appointment_list']);exit; 
+	                
+	$this->load->view('html/header');
+	$this->load->view('html/sidebar');
+	$this->load->view('agent/patient-list',$data);
+	$this->load->view('html/footer');
+				
+	
+			
+	}
 	public function patientlist()
 	{	
 	
@@ -173,6 +127,7 @@ class Agent extends CI_Controller
 	$this->load->view('html/footer');
 				
 	}
+	
 	public function finalappointment()
 	{
 	$data['app_appointment_accept_list']=$this->Agent_model->get_app_appointment_accept_list();
@@ -219,12 +174,147 @@ class Agent extends CI_Controller
 		
 	      }
 	}
+	public function changepassword()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			      $this->load->view('html/header');
+	             $this->load->view('html/sidebar');
+				$this->load->view('html/changepassword');
+				$this->load->view('html/footer');
+			
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('agent');
+		}
+	}
+	
+	public function changepasswordpost(){
+	 
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			$post=$this->input->post();
+			$admin= $this->Agent_model->get_adminpassword_details($admindetails['e_id']);
+			//echo'<pre>';print_r($admin);exit;
+			if($admin['password']== md5($post['oldpassword'])){
+				if(md5($post['password'])==md5($post['confirmpassword'])){
+						$updateuserdata=array(
+						'password'=>md5($post['confirmpassword']),
+						'org_password'=>$post['confirmpassword'],
+						'updated_at'=>date('Y-m-d H:i:s'),
+						);
+						//echo '<pre>';print_r($updateuserdata);exit;
+						$upload= $this->Agent_model->update_admin_details($admindetails['e_id'],$updateuserdata);
+						//echo '<pre>';print_r($upload);exit;
+						if(count($upload)>0){
+							$this->session->set_flashdata('success',"password successfully updated");
+							redirect('agent/changepassword');
+						}else{
+							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+							redirect('agent/changepassword');
+						}
+					
+				}else{
+					$this->session->set_flashdata('error',"Password and Confirm password are not matched");
+					redirect('agent/changepassword');
+				}
+				
+			}else{
+				$this->session->set_flashdata('error',"Old password are not matched");
+				redirect('agent/changepassword');
+			}
+				
+			
+		}else{
+			 $this->session->set_flashdata('error','Please login to continue');
+			 redirect('');
+		} 
+	 
+	}
+	
+	public function profile()
+	{	
+		
+	$admindetails=$this->session->userdata('userdetails');
+	$data['agent_detail']= $this->Agent_model->get_agent_profile_details_data($admindetails['e_id']);
+	//echo '<pre>';print_r($data);exit;
+	 $this->load->view('html/header');
+	 $this->load->view('html/sidebar');
+	$this->load->view('agent/profileview',$data);				
+	 $this->load->view('html/footer');				
+					
+	
+	}
+	
+	public function edit()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+				
+					$admindetails=$this->session->userdata('userdetails');
+					$data['agent_detail']= $this->Agent_model->get_agent_profile_details_data($admindetails['e_id']);
+	                //echo '<pre>';print_r($data);exit;
+					 $this->load->view('html/header');
+	                  $this->load->view('html/sidebar');
+					$this->load->view('agent/profileedit',$data);
+					$this->load->view('html/footer');
+			
+		}else{
+			$this->session->set_flashdata('error',"you don't have permission to access");
+			redirect('agent');
+		}
+	}
+	public function editpost()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+				
+					$admindetails=$this->session->userdata('userdetails');
+					$post=$this->input->post();
+					$agent_detail= $this->Agent_model->get_admin_details_data($admindetails['e_id']);
+					//echo'<pre>';print_r($agent_detail);exit;
+					
+					if($agent_detail['email_id']!= $post['email_id']){
+						$emailcheck= $this->Agent_model->check_email_exits($post['email_id']);
+						//echo'<pre>';print_r($emailcheck);exit;
+					
+								if(count($emailcheck)>0){
+									$this->session->set_flashdata('error','Email id already exists.please use another Email id');
+									redirect('agent/edit/'.base64_encode($admindetails['e_id']));
+								}
+								}	
+									$details=array(
+									'email_id'=>$post['email_id'],
+									'name'=>$post['name'],
+									'mobile'=>$post['mobile_number']
+									
+									);
+									//echo'<pre>';print_r($details);exit;
+									
+									
+								$update= $this->Agent_model->update_agent_details($admindetails['e_id'],$details);
+								//echo'<pre>';print_r($update);exit;
+								if(count($update)>0){
+										$this->session->set_flashdata('success',"Profile details successfully updated.");
+										redirect('agent/profile');
+									}else{
+											$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+											redirect('agent/edit/'.base64_encode($admindetails['e_id']));
+									}
+								}
+					
+	
+	
+		}
+
 	
 	
 	public function logout()
 	{
 		$admindetails=$this->session->userdata('userdetails');
-		$up_details=array('a_id'=>0);
+		$up_details=array('e_id'=>0);
 		$update=$this->Agent_model->update_login_details($admindetails['a_id'],$up_details);
 		$userinfo = $this->session->userdata('userdetails');
         $this->session->unset_userdata($userinfo);
@@ -232,9 +322,6 @@ class Agent extends CI_Controller
 		$this->session->unset_userdata('userdetails');
         redirect('agent');
 	}
-	
-	
-	
 	
 	
   }

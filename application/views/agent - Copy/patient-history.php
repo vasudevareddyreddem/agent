@@ -1,5 +1,4 @@
-<?php include('header.php'); ?>
-<?php include('sidebar.php'); ?>
+
 			<div class="page-content-wrapper">
                 <div class="page-content">
                     
@@ -15,6 +14,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body ">
+								
                                     <table id="saveStage" class="display" style="width:100%;">
                                         <thead>
                                             <tr>
@@ -22,7 +22,7 @@
 												<th>Patient Name</th>
                                                 <th>Mobile No </th>
                                                 <th>Hospital Name</th>
-                                                <th>Department</th>
+                                                <th>Coupon Code</th>
                                                 <th>Date</th>
                                                 <th>Time</th>
                                                 <th>Action</th>
@@ -170,4 +170,3 @@
                     
                 </div>
             </div>
-<?php include('footer.php'); ?>

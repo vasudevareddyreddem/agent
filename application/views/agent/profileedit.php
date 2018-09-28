@@ -7,12 +7,7 @@
 							 <div class=" pull-left">
 								<div class="page-title">Profile Edit</div>
 							 </div>
-							 <ol class="breadcrumb page-breadcrumb pull-right">
-								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="<?php echo base_url('dashboard'); ?>">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
-								</li>
-								
-								<li class="active">Profile Edit</li>
-							 </ol>
+							 
 						  </div>
 						</div>
 							 
@@ -28,20 +23,22 @@
 													 <div class="row">
 												<div class="form-group col-md-6">
 												   <label for="email">Name</label>
-												   <input type="text" id="name" name="name" value="<?php echo isset($admin_detail['a_name'])?$admin_detail['a_name']:''; ?>" class="form-control"  placeholder="Enter Name" >
+												   <input type="text" id="name" name="name" value="<?php echo isset($agent_detail['name'])?$agent_detail['name']:''; ?>" class="form-control"  placeholder="Enter Name" >
 												</div>
 												<div class="form-group col-md-6">
 												   <label for="email">Email Id</label>
-												   <input type="text" id="email_id" name="email_id" value="<?php echo isset($admin_detail['a_email_id'])?$admin_detail['a_email_id']:''; ?>"  class="form-control"  placeholder="Enter Email Id" >
+												   <input type="text" id="email_id" name="email_id" value="<?php echo isset($agent_detail['email_id'])?$agent_detail['email_id']:''; ?>"  class="form-control"  placeholder="Enter Email Id" >
 												</div>
 												<div class="form-group col-md-6">
 												   <label for="email">Mobile Number</label>
-												   <input type="text" id="mobile_number" name="mobile_number" value="<?php echo isset($admin_detail['a_mobile'])?$admin_detail['a_mobile']:''; ?>" class="form-control"  placeholder="Enter Mobile Number" >
+												   <input type="text" id="mobile_number" name="mobile_number" value="<?php echo isset($agent_detail['mobile'])?$agent_detail['mobile']:''; ?>" class="form-control"  placeholder="Enter Mobile Number" >
 												</div>
-												<div class="form-group col-md-6">
+												 <div class="form-group col-md-6">
 												   <label for="email">Profile Pic</label>
 												   <input type="file" id="image" name="image"   class="form-control"  >
 												</div>
+												
+												
 												<div class="form-actions">
 													<div class="row">
 													   <div class="offset-md-11 col-md-1">

@@ -3,16 +3,14 @@
 <head>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/vendor/css/agent-login.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/vendor/css/custom.css" rel="stylesheet" type="text/css" />
     <script src="<?php echo base_url(); ?>assets/vendor/assets/bootstrap/js/bootstrap.min.js" ></script>
     <script src="<?php echo base_url(); ?>assets/vendor/assets/jquery.min.js" ></script>
-	<script src="<?php echo base_url(); ?>http://localhost/agent/assets/vendor/assets/bootstrapValidator.min.js"></script>
 </head>
 
 <body>
 
 <div class="container">
-    <h1 class="page-header">Agent Login</h1>
+    <h1 class="page-header">Forgot Password </h1>
     <div class="box">
 	<?php if($this->session->flashdata('success')): ?>
 				<div class="alert_msg1 animated slideInUp bg-succ">
@@ -29,8 +27,8 @@
 				<?php echo $this->session->flashdata('loginerror');?> &nbsp; <i class="fa fa-exclamation-triangle text-warning ico_bac" aria-hidden="true"></i>
 				</div>
 			<?php endif; ?>
-        <h1>Login</h1>
-		  <form id="loginform" name="loginform" action="<?php echo base_url('agent/loginpost'); ?>" method="post" enctype="multipart/form-data">
+        <h1>Forgot Password</h1>
+		  <form id="loginform" name="loginform" action="" method="post" enctype="multipart/form-data">
 		  <?php $csrf = array(
 								'name' => $this->security->get_csrf_token_name(),
 								'hash' => $this->security->get_csrf_hash()
@@ -41,16 +39,11 @@
             <span class="bar"></span>
             <label class="inputName">Email</label>
         </div>
-        <div class="group">
-            <input class="inputField" type="password" required id="password" name="password" value="<?php echo $this->input->cookie('password');?>" >
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label class="inputName">Password</label>
-        </div>
+       
 		<input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
-        <button type="submit">Login</button>
+       <button  type="submit" class="btn btn-primary btn-block btn-flat">Forgot</button>
 		</form> 
-        <a href="<?php echo base_url('agent/forgotpassword'); ?>">I forgot my password</a><br>
+       
 		
     </div>
 	
@@ -77,14 +70,13 @@
 }    
     
     </script>
-<script type="text/javascript">
-$(document).ready(function() {
-   
+<script>
+	$(document).ready(function() {
     $('#loginform').bootstrapValidator({
-//      
+        
         fields: {
-           email_id: {
-              validators: {
+            email_id: {
+                validators: {
 					notEmpty: {
 						message: 'Email is required'
 					},
@@ -94,8 +86,9 @@ $(document).ready(function() {
 					}
 				}
             },
+             
             password: {
-               validators: {
+                validators: {
 					notEmpty: {
 						message: 'Password is required'
 					},
@@ -108,19 +101,14 @@ $(document).ready(function() {
 					message: 'Password wont allow <>[]'
 					}
 				}
+                }
             }
-        }
-    });
+        })
+     
+});	
 
-    // Validate the form manually
-    $('#validateBtn').click(function() {
-        $('#defaultForm').bootstrapValidator('validate');
-    });
 
-    $('#resetBtn').click(function() {
-        $('#defaultForm').data('bootstrapValidator').resetForm(true);
-    });
-});
+
 </script>
 </body>
 </html>
