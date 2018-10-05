@@ -6,15 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
  
-    <title>hosp</title>
+    <title>Hospital Agent</title>
     <!-- google font -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
+     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
 	<!-- icons -->
     <link href="<?php echo base_url(); ?>assets/vendor/assets/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/vendor/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="<?php echo base_url(); ?>assets/vendor/stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-	<link rel="<?php echo base_url(); ?>assets/vendor/stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<!--bootstrap -->
+    <link href="<?php echo base_url(); ?>assets/vendor/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><!--bootstrap -->
     <link href="<?php echo base_url(); ?>assets/vendor/assets/tether/css/tether.min.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo base_url(); ?>assets/vendor/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo base_url(); ?>assets/vendor/css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
