@@ -51,7 +51,7 @@
                                                 <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
                                                 <td class="valigntop">
                                                     <div class="btn-group">
-														  <a href="<?php echo base_url('agent/view/'.base64_encode($list['b_id']));?>" class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" data-toggle="tooltip"><i class="fas fa-eye"></i>View</a>
+														  <a href="<?php echo base_url('agent/view/'.base64_encode($list['create_by']).'/'.base64_encode($list['city']));?>" class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" data-toggle="tooltip"><i class="fas fa-eye"></i>View</a>
                                                        
                                                     </div>
                                                 </td>
