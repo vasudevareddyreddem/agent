@@ -55,7 +55,7 @@
 														 </div>
 														 <div class=" col-sm-6">
 														  <?php if($agent_detail['profile_pic']!=''){ ?>
-														  <img src="<?php echo base_url('assets/adminpic/'.$agent_detail['profile_pic']); ?>" height="50px" width="50px">
+														  <img src="<?php echo base_url('assets/adminprofilepic/'.$agent_detail['profile_pic']); ?>" height="50px" width="50px">
 														  <?php } ?>
 														 </div>
 													 </div>

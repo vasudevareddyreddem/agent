@@ -23,10 +23,11 @@
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
                                                <th>Appointment Date&Time </th>
-                                                <th>Action</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
+										<?php if(isset($app_appointment_patient_history) && count($app_appointment_patient_history)>0){ ?>
 										<?php $cnt=1; foreach($app_appointment_patient_history as $list){?>
                                             <tr>
                                                 <td><?php echo $cnt;?></td>
@@ -35,13 +36,18 @@
                                                 <td><?php echo $list['hos_bas_name']; ?></td>
                                                  <td><?php echo $list['t_name']; ?></td> 
                                                 <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
-                                                <td><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?></td>
+                                                
                                             </tr>
                                            
                                             
                                            
 										<?php $cnt++;} ?>
                                         </tbody>
+										<?php } else{ ?>
+								<div>No data available</div>
+								<?php } ?>
+										
+										
                                     </table>
                                 </div>
 								<div class="clearfix">&nbsp;</div>

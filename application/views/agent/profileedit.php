@@ -35,7 +35,7 @@
 												</div>
 												 <div class="form-group col-md-6">
 												   <label for="email">Profile Pic</label>
-												   <input type="file" id="image" name="image"   class="form-control"  >
+												   <input type="file" id="profile_pic" name="profile_pic"   class="form-control"  >
 												</div>
 												
 												
@@ -99,7 +99,7 @@ $(document).ready(function() {
 					}
 				}
             },
-			image: {
+			profile_pic: {
                  validators: {
 					regexp: {
 					regexp: "(.*?)\.(png|jpg|jpeg|gif|Png|PNG)$",

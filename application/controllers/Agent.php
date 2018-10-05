@@ -7,10 +7,19 @@ class Agent extends CI_Controller
 		parent::__construct();
 		$this->load->model('Agent_model');
 		$this->load->library('session');
-	    $this->session->userdata('userdetails');
+	    if($this->session->userdata('userdetails'))
+			{
+			$admindetails=$this->session->userdata('userdetails');
+			$data['userdetails']=$this->Agent_model->get_all_agent_details($admindetails['e_id']);
+			//echo'<pre>';print_r($data['userdetails']);exit;
+			
+			$this->load->view('html/header',$data);
+			$this->load->view('html/sidebar',$data);
+			}
+		
 	
-	
-}
+  }
+
 	public function index()
 	{	
 		if(!$this->session->userdata('userdetails'))
@@ -18,9 +27,10 @@ class Agent extends CI_Controller
 			 $data['executive_list']=$this->Agent_model->executive_list_data();
 				//echo'<pre>';print_r($data);exit;
 			$this->load->view('html/login',$data);
+			
 		}else{
 			
-			redirect('agent/patientlist/');
+			redirect('agent/patient/');
 		}
 	}
 	
@@ -73,14 +83,14 @@ class Agent extends CI_Controller
 				$this->email->set_newline("\r\n");
 				$this->email->set_mailtype("html");
 				$this->email->from($post['email_id']);
-				$this->email->to('kayalan@gmail.com');
+				$this->email->to('admin@grfpublishers.org');
 				$this->email->subject('forgot - password');
 				$body = $this->load->view('email/forgot',$data,TRUE);
 				$this->email->message($body);
 				//echo print_r($body);exit;
 				$this->email->send();
 				$this->session->set_flashdata('success','Check Your Email to reset your password!');
-				redirect('agent/forgotpassword');
+				redirect('agent');
 
 			}else{
 				$this->session->set_flashdata('error','The email you entered is not a registered email. Please try again. ');
@@ -92,11 +102,11 @@ class Agent extends CI_Controller
 	public function view()
 	{
 		
-    $b_id=base64_decode($this->uri->segment(3));
+        $b_id=base64_decode($this->uri->segment(3));
+
 	$data['app_appointment_view_list']=$this->Agent_model->get_app_appointment_view_list(base64_decode($this->uri->segment(3)));
-	//echo '<pre>';print_r($data);exit;
+    echo '<pre>';print_r($data);exit;
 	$this->load->view('html/header');
-	$this->load->view('html/sidebar');
 	$this->load->view('agent/view-patient',$data);
 	$this->load->view('html/footer');
    
@@ -106,38 +116,61 @@ class Agent extends CI_Controller
 	
 	public function patient()
 	{	
-	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();
-	//echo '<pre>';print_r($data['app_appointment_list']);exit; 
-	                
+	
+	 if($this->session->userdata('userdetails'))
+			{
+	$admindetails=$this->session->userdata('userdetails');
+	$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
+	$data['location_wise_list']=$this->Agent_model->get_location_wise_patient_list($user_details['location']);
+		
+   // echo'<pre>';print_r($data);exit;
+	
+	
+	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();	
+		//echo'<pre>';print_r($data);exit;
 	$this->load->view('html/header');
-	$this->load->view('html/sidebar');
 	$this->load->view('agent/patient-list',$data);
 	$this->load->view('html/footer');
-				
-	
 			
+	 }
 	}
 	public function patientlist()
-	{	
+	{
+	 if($this->session->userdata('userdetails'))
+			{
+	$admindetails=$this->session->userdata('userdetails');	
+	$app=$this->Agent_model->get_appointment_list($admindetails);
+		//echo'<pre>';print_r($app);exit;
+    $data['app_appointment_patient_history']=$this->Agent_model->get_app_appointment_patient_history($app['create_by']);
+	//echo'<pre>';print_r($data['app_appointment_patient_history']);exit;
 	
-	$data['app_appointment_patient_history']=$this->Agent_model->get_app_appointment_patient_history();
+	
 	$this->load->view('html/header');
-	$this->load->view('html/sidebar');
+	
 	$this->load->view('agent/patient-history',$data);
 	$this->load->view('html/footer');
 				
 	}
-	
+	}
 	public function finalappointment()
 	{
-	$data['app_appointment_accept_list']=$this->Agent_model->get_app_appointment_accept_list();
-	//echo '<pre>';print_r($data);exit; 
 		
+	 if($this->session->userdata('userdetails'))
+			{
+	$admindetails=$this->session->userdata('userdetails');
+	$app=$this->Agent_model->get_appointment_list($admindetails);
+		//echo'<pre>';print_r($app);exit;
+    $data['appointments']=$this->Agent_model->get_appointment_list_data_patient($app['create_by']);
+	//echo'<pre>';print_r($data);exit;
+	
+	
 	
 	$this->load->view('html/header');
-	$this->load->view('html/sidebar');
+	
 	$this->load->view('agent/final-app-list',$data);
 	$this->load->view('html/footer');
+	
+	}
 	
 	}
 	public function status()
@@ -180,7 +213,6 @@ class Agent extends CI_Controller
 		{
 			$admindetails=$this->session->userdata('userdetails');
 			      $this->load->view('html/header');
-	             $this->load->view('html/sidebar');
 				$this->load->view('html/changepassword');
 				$this->load->view('html/footer');
 			
@@ -241,7 +273,6 @@ class Agent extends CI_Controller
 	$data['agent_detail']= $this->Agent_model->get_agent_profile_details_data($admindetails['e_id']);
 	//echo '<pre>';print_r($data);exit;
 	 $this->load->view('html/header');
-	 $this->load->view('html/sidebar');
 	$this->load->view('agent/profileview',$data);				
 	 $this->load->view('html/footer');				
 					
@@ -257,7 +288,7 @@ class Agent extends CI_Controller
 					$data['agent_detail']= $this->Agent_model->get_agent_profile_details_data($admindetails['e_id']);
 	                //echo '<pre>';print_r($data);exit;
 					 $this->load->view('html/header');
-	                  $this->load->view('html/sidebar');
+	                  
 					$this->load->view('agent/profileedit',$data);
 					$this->load->view('html/footer');
 			
@@ -285,11 +316,20 @@ class Agent extends CI_Controller
 									redirect('agent/edit/'.base64_encode($admindetails['e_id']));
 								}
 								}	
+								
+								if(isset($_FILES['profile_pic']['name']) && $_FILES['profile_pic']['name']!=''){
+										unlink("assets/adminprofilepic/".$agent_detail['profile_pic']);
+										$temp = explode(".", $_FILES["profile_pic"]["name"]);
+										$img = round(microtime(true)) . '.' . end($temp);
+										move_uploaded_file($_FILES['profile_pic']['tmp_name'], "assets/adminprofilepic/" . $img);
+										}else{
+										$img=$agent_detail['profile_pic'];
+										}
 									$details=array(
 									'email_id'=>$post['email_id'],
 									'name'=>$post['name'],
-									'mobile'=>$post['mobile_number']
-									
+									'mobile'=>$post['mobile_number'],
+									'profile_pic'=>$img
 									);
 									//echo'<pre>';print_r($details);exit;
 									

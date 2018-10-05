@@ -28,10 +28,14 @@
                                     <td>
                                         <ol>
 										<?php if($app_appointment_view_list['status']==1){ ?>
-                                            <li><?php echo $app_appointment_view_list['hos_bas_name']; ?> <i class="fas fa-circle fa-1x text-success"></i></li>
-                                           <?php }else{?>
-										  
-										    <li><?php echo $app_appointment_view_list['hos_bas_name']; ?><i class="fas fa-circle fa-1x text-danger"></i></li>
+										
+										  <?php foreach($app_appointment_view_list['hospital_list'] as $li){ ?>
+                                            <li><?php echo $li['hos_bas_name']; ?> <i class="fas fa-circle fa-1x text-success"></i></li>
+                                            <?php }?>
+										   <?php }else{ ?>
+										   <?php foreach($app_appointment_view_list['hospital_list'] as $li){ ?>
+                                          <li><?php echo $li['hos_bas_name']; ?> <i class="fas fa-circle fa-1x text-danger"></i></li>
+										   <?php }?>
 										   <?php }?>
                                         </ol>
                                     </td>

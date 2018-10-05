@@ -9,15 +9,15 @@ html{
 .container h1.page-header{
 	text-align:center;
 	font-size:40px;
-    color: #fff;
+    color: #444;
     position: relative;
-    top:80px;
+  
 }
 /* BOX LOGIN */
 .box{
 	position: relative;
 	margin: auto;
-	height: 365px;
+	height: auto;
     top: 80px;
 	left: 0;
 /*	z-index: 200;*/

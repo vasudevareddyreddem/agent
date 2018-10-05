@@ -14,6 +14,8 @@
                                     </div>
                                 </div>
                                 <div class="card-body ">
+								
+								<?php if(isset($location_wise_list) && count($location_wise_list)>0){ ?>
                                     <table id="saveStage" class="display" style="width:100%;">
                                         <thead>
                                             <tr>
@@ -28,17 +30,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-										<?php $cnt=1;foreach($app_appointment_list as $list){ ?>
+										<?php $cnt=1;foreach($location_wise_list as $list){ ?>
 										
                                             <tr>
                                                 <td><?php echo $cnt; ?></td>
                                                 <td><?php echo $list['patinet_name']; ?></td>
                                                 <td><?php echo $list['mobile']; ?></td>
                                                 <td>
+												<?php if(isset($list['hospital_list']) && count($list['hospital_list'])>0){ ?>
                                                     <ol>
-                                                        <li><?php echo $list['hos_bas_name']; ?></li>
+														<?php foreach($list['hospital_list'] as $li){ ?>
+                                                        <li><?php echo $li['hos_bas_name']; ?></li>
+														<?php } ?>
                                                         
                                                     </ol>
+												<?php } ?>
                                                 </td>
                                                 <td><?php echo $list['t_name']; ?></td>
                                                
@@ -55,6 +61,10 @@
 											
                                         </tbody>
                                     </table>
+									
+								<?php } else{ ?>
+								<div>No data available</div>
+								<?php } ?>
                                 </div>
 								<div class="clearfix">&nbsp;</div>
                             </div>

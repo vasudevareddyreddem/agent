@@ -12,11 +12,15 @@
 	                        <li class="sidebar-user-panel">
 	                            <div class="user-panel">
 	                                <div class="pull-left image">
-	                                    <img src="img/dp.jpg" class="img-circle user-img-circle" alt="User Image" />
+	                                    <?php if($userdetails['profile_pic']!=''){?>
+														<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['profile_pic']);?>" class="img-circle" alt="<?php echo htmlentities($userdetails['profile_pic']); ?>" />
+														<?php }else{ ?>
+														 <img src="<?php echo base_url();?>assets/vendor/img/dp.jpg" class="img-circle" alt="User Image" />
+														<?php } ?>
 	                                </div>
-	                                <div class="pull-left info">
-	                                    <p> Admin XXXXX </p>
-	                                    <a href="#"><i class="fa fa-circle user-online"></i><span class="txtOnline"> Online</span></a>
+	                                  <div class="pull-left info">
+	                                    <p> <?php echo isset($userdetails['name'])?$userdetails['name']:''; ?></p>
+	                                    <a href="<?php echo base_url('agent/profile');?>"><i class="fa fa-circle user-online"></i><span class="txtOnline"> Online</span></a>
 	                                </div>
 	                            </div>
 	                        </li>
