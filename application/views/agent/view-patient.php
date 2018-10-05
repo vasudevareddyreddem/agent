@@ -3,13 +3,10 @@
 
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-               
-              
-            </div>
+           
             <div class="modal-body">
                 <div class="row">
-                    <div id="" class="col-xs-12 col-xl-12 form-group">
+                    <div id="" class="col-xs-13 col-xl-13 form-group">
                         <table id="" class="table" style="width:100%;">
                             <thead>
                                 <tr>
