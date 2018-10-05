@@ -124,7 +124,7 @@ class Agent extends CI_Controller
 	$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
 	$data['location_wise_list']=$this->Agent_model->get_location_wise_patient_list($user_details['location']);
 		
-   // echo'<pre>';print_r($data);exit;
+   //echo'<pre>';print_r($data);exit;
 	
 	
 	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();	
@@ -143,7 +143,12 @@ class Agent extends CI_Controller
 	$app=$this->Agent_model->get_appointment_list($admindetails);
 		//echo'<pre>';print_r($app);exit;
     $data['app_appointment_patient_history']=$this->Agent_model->get_app_appointment_patient_history($app['create_by']);
-	//echo'<pre>';print_r($data['app_appointment_patient_history']);exit;
+	
+	
+	
+	$data['patient_history']=$this->Agent_model->patient_history_list();
+	//echo'<pre>';print_r($data['patient_history']);exit;
+	
 	
 	
 	$this->load->view('html/header');
@@ -159,9 +164,9 @@ class Agent extends CI_Controller
 	 if($this->session->userdata('userdetails'))
 			{
 	$admindetails=$this->session->userdata('userdetails');
-	$app=$this->Agent_model->get_appointment_list($admindetails);
-		//echo'<pre>';print_r($app);exit;
-    $data['appointments']=$this->Agent_model->get_appointment_list_data_patient($app['create_by']);
+	$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
+	
+    $data['appointments']=$this->Agent_model->get_appointment_list_data_patient($user_details['location']);
 	//echo'<pre>';print_r($data);exit;
 	
 	

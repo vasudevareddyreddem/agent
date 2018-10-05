@@ -79,7 +79,14 @@
  						<li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                
-                                <span class="username username-hide-on-mobile">Agent</span>
+						<?php if($userdetails['profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['profile_pic']);?>" class="img-circle" alt="<?php echo htmlentities($userdetails['profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/dp.jpg" class="img-circle" alt="User Image" />
+							<?php } ?>
+                               
+								<span class="username username-hide-on-mobile">  <?php echo isset($userdetails['name'])?htmlentities($userdetails['name']):''; ?> </span>
+								
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">

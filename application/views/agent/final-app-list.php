@@ -23,6 +23,7 @@
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
                                                 <th>Appointment Date&Time </th>
+												<th>Action</th>
 												
                                             </tr>
                                         </thead>
@@ -32,11 +33,30 @@
                                                 <td><?php echo $cnt; ?></td>
                                                 <td><?php echo $list['patinet_name']; ?></td>
                                                 <td><?php echo $list['mobile']; ?></td>
-                                                <td><?php echo $list['hos_bas_name']; ?></td>
+                                                <td>
+												<?php foreach($list['hospital_list'] as $li){ ?>
+												<?php echo $li['hos_bas_name']; ?>
+												<?php } ?>
+												</td>
                                                  <td><?php echo $list['t_name']; ?></td> 
                                                 <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
 												
-                                                
+                                                   <td class="valigntop">
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                           
+                                                           
+															<li>
+                                                                <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
+                                                                    <i class="fa fa-edit"></i><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?> </a>
+                                                            </li>
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </td>			
 												  	
 
                                             </tr>

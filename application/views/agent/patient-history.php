@@ -27,8 +27,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-										<?php if(isset($app_appointment_patient_history) && count($app_appointment_patient_history)>0){ ?>
-										<?php $cnt=1; foreach($app_appointment_patient_history as $list){?>
+										<?php if(isset($patient_history) && count($patient_history)>0){ ?>
+										<?php $cnt=1; foreach($patient_history as $list){?>
                                             <tr>
                                                 <td><?php echo $cnt;?></td>
                                                <td><?php echo $list['patinet_name']; ?></td>
