@@ -143,7 +143,7 @@ class Agent extends CI_Controller
 	$app=$this->Agent_model->get_appointment_list($admindetails);
 		//echo'<pre>';print_r($app);exit;
     $data['app_appointment_patient_history']=$this->Agent_model->get_app_appointment_patient_history($app['create_by']);
-	
+	//echo'<pre>';print_r($data['app_appointment_patient_history']);exit;
 	
 	
 	$data['patient_history']=$this->Agent_model->patient_history_list();
