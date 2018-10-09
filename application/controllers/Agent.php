@@ -157,6 +157,7 @@ class Agent extends CI_Controller
 					
 					
 					
+					
 					$this->load->view('agent/final-app-list',$data);
 					$this->load->view('html/footer');
 	
@@ -174,6 +175,7 @@ class Agent extends CI_Controller
 			 if($this->session->userdata('userdetails'))
 					{
 					$admindetails=$this->session->userdata('userdetails');
+					$b_id=base64_decode($this->uri->segment(3));
 			$post=$this->input->post();
 					
 			//echo'<pre>';print_r($post);exit;
@@ -182,10 +184,11 @@ class Agent extends CI_Controller
 					'reason'=>isset($post['reason'])?$post['reason']:'',
 					);
 					
-				//$add=$this->Agent_model->save_reason($save_data);
+				$add=$this->Agent_model->save_reason($save_data);
 			//echo'<pre>';print_r($add);exit;
 			
-		          
+			
+			
 		
 		}
 		

@@ -346,7 +346,10 @@ $this->db->select('hospital.hos_bas_name,appointments.id,appointments.city,appoi
     return $this->db->get()->result_array();
 	}
 	
-	
+	public function save_reason($data){
+	$this->db->insert('appointment_bidding_list', $data);
+    return $insert_id = $this->db->insert_id();
+	}
 	
 	
 	
