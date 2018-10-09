@@ -175,17 +175,23 @@ class Agent extends CI_Controller
 			 if($this->session->userdata('userdetails'))
 					{
 					$admindetails=$this->session->userdata('userdetails');
-					$b_id=base64_decode($this->uri->segment(3));
-			$post=$this->input->post();
 					
-			//echo'<pre>';print_r($post);exit;
-					$save_data=array(
-				
+					$post=$this->input->post();
+					$explode=explode('/',$post['b_id']);
+					$b_id=base64_decode($explode[0]);
+					$add=array(
 					'reason'=>isset($post['reason'])?$post['reason']:'',
+					'event_status'=>2,
 					);
+					$update=$this->Agent_model->update_status($b_id,$add);
+					if(count($update)>0){
+						 $this->session->set_flashdata('success','successfully sent');
+						redirect('agent/finalappointment');
+					}else{
+							$this->session->set_flashdata('error','Technical problem will occured. try again once');
+						redirect('agent/finalappointment');
+					}
 					
-				$add=$this->Agent_model->save_reason($save_data);
-			//echo'<pre>';print_r($add);exit;
 			
 			
 			
@@ -344,12 +350,12 @@ class Agent extends CI_Controller
 								}
 								}	
 								if($_FILES['kyc']['name']!=''){
-					$catimg=$_FILES['kyc']['name'];
-					move_uploaded_file($_FILES['kyc']['tmp_name'], "assets/kyc_documents/" . $_FILES['kyc']['name']);
+									$catimg=$_FILES['kyc']['name'];
+								move_uploaded_file($_FILES['kyc']['tmp_name'], "assets/kyc_documents/" . $_FILES['kyc']['name']);
 
-					}else{
-					$catimg='';
-					}
+								}else{
+								$catimg=$agent_detail['kyc'];
+								}
 								if(isset($_FILES['profile_pic']['name']) && $_FILES['profile_pic']['name']!=''){
 										unlink("assets/adminprofilepic/".$agent_detail['profile_pic']);
 										$temp = explode(".", $_FILES["profile_pic"]["name"]);

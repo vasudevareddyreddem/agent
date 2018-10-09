@@ -1,4 +1,4 @@
-<?php //echo '<pre>';print_r($admin_detail);exit; ?>
+<?php //echo '<pre>';print_r($agent_detail);exit; ?>
 
 <div class="page-content-wrapper">
                 <div class="page-content" >
@@ -121,7 +121,7 @@
 														 </div>
 														<div class=" col-sm-6">
 														  <?php if($agent_detail['kyc']!=''){ ?>
-														  <input type="file" <?php echo base_url('assets/kyc_documents/'.$agent_detail['kyc']); ?>" height="50px" width="50px">
+														  <a href="<?php echo base_url('assets/kyc_documents/'.$agent_detail['kyc']); ?>">Download</a>
 														  <?php } ?>
 														 </div>
 														

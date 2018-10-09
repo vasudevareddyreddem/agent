@@ -51,9 +51,15 @@
                                                            
                                                            
 															<li>
+															<?php if($list['event_status']==1){  ?>
                                                                 <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
                                                                     <i class="fa fa-edit"></i><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?> </a>
-                                                            </li>
+                                                            <?php }else{ ?>
+															   <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModalrecived">
+                                                                    <i class="fa fa-edit"></i><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?> </a>
+                                                           
+															<?php } ?>
+															</li>
                                                             
                                                         </ul>
                                                     </div>
@@ -72,7 +78,7 @@
 								
 								
 		
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModalrecived" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -96,10 +102,44 @@
                             </div>
                             <br>
                             <div class="col-lg-12">
-                                <a href="?id=value" class="btn blueBtn popid"><span aria-hidden="true">Ok</span></a>
+							<input type="hidden" name="b_id" id="b_id" class="popid" value="">
                                 <button type="button" aria-label="Close" data-dismiss="modal" class="btn blueBtn float-right">Cancel</button>
                             </div>
 							<button type="submit" class="btn btn-primary" name="Submit" value="Submit">Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div style="padding:10px">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 style="pull-left" class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger alert-dismissible" id="errormsg" style="display:none;"></div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form id="defaultForm" method="post" action="<?php echo base_url('agent/formpost'); ?>">
+                            <div id="content1" class="col-lg-12 form-group">
+                                Are you sure ?
+                            </div>
+
+                             <div class="col-lg-12">
+							<input type="hidden" name="b_id" id="b_id" class="popid" value="">
+                                <a href="?id=value" class="btn blueBtn popid"><span aria-hidden="true">Ok</span></a>
+                                <button type="button" aria-label="Close" data-dismiss="modal" class="btn blueBtn float-right">Cancel</button>
+                            </div>
 
                         </form>
                     </div>
@@ -127,6 +167,7 @@ $(document).ready(function() {
 
  function admindeactive(id){
 	$(".popid").attr("href","<?php echo base_url('agent/status/'); ?>"+"/"+id);
+	$("#b_id").val(id);
 }
 function adminstatus(id){
 	if(id==1){
