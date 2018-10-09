@@ -11,14 +11,10 @@ class Agent extends CI_Controller
 			{
 			$admindetails=$this->session->userdata('userdetails');
 			$data['userdetails']=$this->Agent_model->get_all_agent_details($admindetails['e_id']);
-			//echo'<pre>';print_r($data['userdetails']);exit;
-			
 			$this->load->view('html/header',$data);
 			$this->load->view('html/sidebar',$data);
 			}
-		
-	
-  }
+	}
 
 	public function index()
 	{	
@@ -41,13 +37,9 @@ class Agent extends CI_Controller
 		{
 						
 			$post=$this->input->post();
-			//echo '<pre>';print_r($post);
 			 $data['executive_list']=$this->Agent_model->executive_list_data();
-				//echo'<pre>';print_r($data);exit;
 			$login_deta=array('email_id'=>$post['email_id'],'password'=>md5($post['password']));
-			//echo '<pre>';print_r($login_deta);exit;
 			$check_login=$this->Agent_model->login_details($login_deta);
-			//echo '<pre>';print_r($check_login);exit;
 				$this->load->helper('cookie');
 
 				if(count($check_login)>0){
@@ -56,9 +48,12 @@ class Agent extends CI_Controller
 				$this->session->set_userdata('userdetails',$login_details);
 				redirect('agent');
 			}else{
-				$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
+				$this->session->set_flashdata('error',"Invalid Email Address or Password!");
 				redirect('agent');
 			}
+		}else{
+			//$this->session->set_flashdata('error','Please login to continue');
+			redirect('agent/patient/');
 		}
 	}
 	public function forgotpassword()
@@ -83,7 +78,7 @@ class Agent extends CI_Controller
 				$this->email->set_newline("\r\n");
 				$this->email->set_mailtype("html");
 				$this->email->from($post['email_id']);
-				$this->email->to('admin@grfpublishers.org');
+				$this->email->to('admin@agent.com');
 				$this->email->subject('forgot - password');
 				$body = $this->load->view('email/forgot',$data,TRUE);
 				$this->email->message($body);
@@ -101,83 +96,100 @@ class Agent extends CI_Controller
 	
 	public function view()
 	{
-		
-      $p_id=base64_decode($this->uri->segment(3));
-      $location=base64_decode($this->uri->segment(4));
+		if($this->session->userdata('userdetails'))
+		{
+			$p_id=base64_decode($this->uri->segment(3));
+			$location=base64_decode($this->uri->segment(4));
 
-	$data['app_appointment_view_list']=$this->Agent_model->get_app_appointment_view_list($p_id,$location);
-    //echo '<pre>';print_r($data);exit;
-	$this->load->view('html/header');
-	$this->load->view('agent/view-patient',$data);
-	$this->load->view('html/footer');
-   
-					
-   }
-	
-	
+			$data['app_appointment_view_list']=$this->Agent_model->get_app_appointment_view_list($p_id,$location);
+			//echo '<pre>';print_r($data);exit;
+			$this->load->view('agent/view-patient',$data);
+			$this->load->view('html/footer');
+		 }else{
+			  $this->session->set_flashdata('error','Please login to continue');
+			  redirect('');
+		 }
+    }
 	public function patient()
 	{	
-	
-	 if($this->session->userdata('userdetails'))
-			{
-	$admindetails=$this->session->userdata('userdetails');
-	$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
-	$data['location_wise_list']=$this->Agent_model->get_location_wise_patient_list($user_details['location']);
-		
-   //echo'<pre>';print_r($data);exit;
-	
-	
-	$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();	
-		//echo'<pre>';print_r($data);exit;
-	$this->load->view('html/header');
-	$this->load->view('agent/patient-list',$data);
-	$this->load->view('html/footer');
-			
-	 }
+		if($this->session->userdata('userdetails'))
+				{
+				$admindetails=$this->session->userdata('userdetails');
+				$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
+				$data['location_wise_list']=$this->Agent_model->get_location_wise_patient_list($user_details['location']);
+				$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();	
+				$this->load->view('agent/patient-list',$data);
+				$this->load->view('html/footer');
+						
+		 }else{
+			  $this->session->set_flashdata('error','Please login to continue');
+			redirect('');
+		 }
 	}
 	public function patientlist()
 	{
-	 if($this->session->userdata('userdetails'))
+		if($this->session->userdata('userdetails'))
 			{
-	$admindetails=$this->session->userdata('userdetails');	
-	$app=$this->Agent_model->get_appointment_list($admindetails);
-		//echo'<pre>';print_r($app);exit;
-    $data['app_appointment_patient_history']=$this->Agent_model->get_app_appointment_patient_history($app['create_by']);
-	//echo'<pre>';print_r($data['app_appointment_patient_history']);exit;
-	
-	
-	$data['patient_history']=$this->Agent_model->patient_history_list();
-	//echo'<pre>';print_r($data['patient_history']);exit;
-	
-	
-	
-	$this->load->view('html/header');
-	
-	$this->load->view('agent/patient-history',$data);
-	$this->load->view('html/footer');
+				$admindetails=$this->session->userdata('userdetails');	
+				$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
+				$data['patient_history']=$this->Agent_model->patient_history_list($user_details['location']);
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('agent/patient-history',$data);
+				$this->load->view('html/footer');
+							
+			}else{
+				 $this->session->set_flashdata('error','Please login to continue');
+				 redirect('');
 				
-	}
-	}
-	public function finalappointment()
-	{
-		
-	 if($this->session->userdata('userdetails'))
+			}
+		}
+			public function finalappointment()
 			{
-	$admindetails=$this->session->userdata('userdetails');
-	$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
+				
+			 if($this->session->userdata('userdetails'))
+					{
+					$admindetails=$this->session->userdata('userdetails');
+					$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
+					
+					$data['appointments']=$this->Agent_model->get_appointment_list_data_patient($user_details['location']);
+					//echo'<pre>';print_r($data);exit;
+					
+					
+					
+					
+					$this->load->view('agent/final-app-list',$data);
+					$this->load->view('html/footer');
 	
-    $data['appointments']=$this->Agent_model->get_appointment_list_data_patient($user_details['location']);
-	//echo'<pre>';print_r($data);exit;
+				}else{
+					 $this->session->set_flashdata('error','Please login to continue');
+					 redirect('');
+				}
 	
-	
-	
-	$this->load->view('html/header');
-	
-	$this->load->view('agent/final-app-list',$data);
-	$this->load->view('html/footer');
-	
-	}
-	
+		}
+		
+		public function formpost()
+				
+			 {
+				
+			 if($this->session->userdata('userdetails'))
+					{
+					$admindetails=$this->session->userdata('userdetails');
+			$post=$this->input->post();
+					
+			//echo'<pre>';print_r($post);exit;
+					$save_data=array(
+				
+					'reason'=>isset($post['reason'])?$post['reason']:'',
+					);
+					//echo'<pre>';print_r($save_data);exit;
+				$add=$this->Agent_model->save_reason($save_data);
+			
+			
+		          
+		
+		}
+		
+		
 	}
 	public function status()
 	{	
@@ -218,13 +230,12 @@ class Agent extends CI_Controller
 		if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			      $this->load->view('html/header');
 				$this->load->view('html/changepassword');
 				$this->load->view('html/footer');
 			
 		}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
-			redirect('agent');
+			$this->session->set_flashdata('error','Please login to continue');
+			redirect('');
 		}
 	}
 	
@@ -273,14 +284,22 @@ class Agent extends CI_Controller
 	}
 	
 	public function profile()
-	{	
+	{
+
+		if($this->session->userdata('userdetails'))
+		{	
 		
-	$admindetails=$this->session->userdata('userdetails');
-	$data['agent_detail']= $this->Agent_model->get_agent_profile_details_data($admindetails['e_id']);
-	//echo '<pre>';print_r($data);exit;
-	 $this->load->view('html/header');
-	$this->load->view('agent/profileview',$data);				
-	 $this->load->view('html/footer');				
+		$admindetails=$this->session->userdata('userdetails');
+		$data['agent_detail']= $this->Agent_model->get_agent_profile_details_data($admindetails['e_id']);
+		//echo '<pre>';print_r($data);exit;
+		 $this->load->view('html/header');
+		$this->load->view('agent/profileview',$data);				
+		 $this->load->view('html/footer');	
+
+		}else{
+			 $this->session->set_flashdata('error','Please login to continue');
+			 redirect('');
+		}		
 					
 	
 	}
@@ -293,14 +312,13 @@ class Agent extends CI_Controller
 					$admindetails=$this->session->userdata('userdetails');
 					$data['agent_detail']= $this->Agent_model->get_agent_profile_details_data($admindetails['e_id']);
 	                //echo '<pre>';print_r($data);exit;
-					 $this->load->view('html/header');
 	                  
 					$this->load->view('agent/profileedit',$data);
 					$this->load->view('html/footer');
 			
 		}else{
-			$this->session->set_flashdata('error',"you don't have permission to access");
-			redirect('agent');
+			 $this->session->set_flashdata('error','Please login to continue');
+			 redirect('');
 		}
 	}
 	public function editpost()
@@ -322,7 +340,13 @@ class Agent extends CI_Controller
 									redirect('agent/edit/'.base64_encode($admindetails['e_id']));
 								}
 								}	
-								
+								if($_FILES['kyc']['name']!=''){
+					$catimg=$_FILES['kyc']['name'];
+					move_uploaded_file($_FILES['kyc']['tmp_name'], "assets/kyc_documents/" . $_FILES['kyc']['name']);
+
+					}else{
+					$catimg='';
+					}
 								if(isset($_FILES['profile_pic']['name']) && $_FILES['profile_pic']['name']!=''){
 										unlink("assets/adminprofilepic/".$agent_detail['profile_pic']);
 										$temp = explode(".", $_FILES["profile_pic"]["name"]);
@@ -335,6 +359,13 @@ class Agent extends CI_Controller
 									'email_id'=>$post['email_id'],
 									'name'=>$post['name'],
 									'mobile'=>$post['mobile_number'],
+									'address'=>$post['address'],
+									'bank_account'=>$post['bank_account'],
+									'bank_name'=>$post['bank_name'],
+									'ifsccode'=>$post['ifsccode'],
+									'bank_holder_name'=>$post['bank_holder_name'],
+									'kyc'=>$catimg,
+									'location'=>$post['location'],
 									'profile_pic'=>$img
 									);
 									//echo'<pre>';print_r($details);exit;
@@ -349,6 +380,9 @@ class Agent extends CI_Controller
 											$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 											redirect('agent/edit/'.base64_encode($admindetails['e_id']));
 									}
+								}else{
+									 $this->session->set_flashdata('error','Please login to continue');
+									redirect('');
 								}
 					
 	
@@ -359,14 +393,11 @@ class Agent extends CI_Controller
 	
 	public function logout()
 	{
-		$admindetails=$this->session->userdata('userdetails');
-		$up_details=array('e_id'=>0);
-		$update=$this->Agent_model->update_login_details($admindetails['a_id'],$up_details);
 		$userinfo = $this->session->userdata('userdetails');
         $this->session->unset_userdata($userinfo);
 		$this->session->sess_destroy('userdetails');
 		$this->session->unset_userdata('userdetails');
-        redirect('agent');
+        redirect('');
 	}
 	
 	

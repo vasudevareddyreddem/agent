@@ -33,11 +33,47 @@
 												   <label for="email">Mobile Number</label>
 												   <input type="text" id="mobile_number" name="mobile_number" value="<?php echo isset($agent_detail['mobile'])?$agent_detail['mobile']:''; ?>" class="form-control"  placeholder="Enter Mobile Number" >
 												</div>
-												 <div class="form-group col-md-6">
+												
+									<div class="col-md-6">
+									<label> Address</label>
+								 <input type="text" id="address" name="address" value="<?php echo isset($agent_detail['address'])?$agent_detail['address']:''; ?>" class="form-control"  placeholder="Enter Address" >	
+								</div>
+								<div class="col-md-6">
+									<label> Bank Account Number</label>
+								<input type="text" id="bank_account" name="bank_account" value="<?php echo isset($agent_detail['bank_account'])?$agent_detail['bank_account']:''; ?>" class="form-control"  placeholder="Enter Bank Account Number" >	
+
+								</div>
+								<div class="col-md-6">
+									<label> Bank Name</label>
+									<input type="text" id="bank_name" name="bank_name" value="<?php echo isset($agent_detail['bank_name'])?$agent_detail['bank_name']:''; ?>" class="form-control"  placeholder="Enter  Bank Name" >	
+
+								</div>
+								<div class="col-md-6">
+
+									<label> Bank Ifsc Code</label>
+									<input type="text" id="ifsccode" name="ifsccode" value="<?php echo isset($agent_detail['ifsccode'])?$agent_detail['ifsccode']:''; ?>" class="form-control"  placeholder="Enter  Bank Ifsc Code" >	
+								</div>
+								<div class="col-md-6">
+
+									<label> Bank Account Holder Name</label>
+									<input type="text" id="bank_holder_name" name="bank_holder_name" value="<?php echo isset($agent_detail['bank_holder_name'])?$agent_detail['bank_holder_name']:''; ?>" class="form-control"  placeholder="Enter Bank Account Holder Name" >	
+
+								</div>
+                                     <div class="col-md-6">
+									<label> Kyc</label>
+									<input class="form-control" id="kyc" name="kyc"  type="file" placeholder="Enter kyc" >
+								</div>
+								
+								<div class="col-md-6">
+									<label>Location</label>
+									<input type="text" id="location" name="location" value="<?php echo isset($agent_detail['location'])?$agent_detail['location']:''; ?>" class="form-control"  placeholder="Enter Location" >	
+
+
+								</div>
+								 <div class="form-group col-md-6">
 												   <label for="email">Profile Pic</label>
 												   <input type="file" id="profile_pic" name="profile_pic"   class="form-control"  >
 												</div>
-												
 												
 												<div class="form-actions">
 													<div class="row">
@@ -60,7 +96,8 @@
 					</div>
                     </div>
                     </div>
-<script>
+					
+	<script>
 $(document).ready(function() {
     $('#editprofile').bootstrapValidator({
         
@@ -99,6 +136,77 @@ $(document).ready(function() {
 					}
 				}
             },
+			
+			address: {
+                 validators: {
+					notEmpty: {
+						message: 'Address is required'
+					},
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message:'Address wont allow <> [] = % '
+					}
+				
+				}
+            },
+			bank_account: {
+                 validators: 
+					{
+					    
+						regexp: 
+						{
+					     regexp:  /^[0-9]{9,16}$/,
+					     message:'Bank Account  must be 9 to 16 digits'
+					    }
+				}
+            },
+			
+			bank_name: {
+                 validators: {
+					
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message:' Name of the bank wont allow <> [] = % '
+					}
+				
+				}
+            },
+			
+			ifsccode: {
+                 validators: {
+					
+					regexp: {
+					 regexp: /^[A-Za-z0-9]{4}\d{7}$/,
+					message: 'IFSC Code must be alphanumeric'
+					}
+				}
+            },
+			bank_holder_name:{
+			 validators: {
+					
+					regexp: {
+					regexp: /^[a-zA-Z ]+$/,
+					message: 'Bank Holder Name can only consist of alphabets and space'
+					}
+				}
+            },
+			
+			kyc: {
+                   validators: {
+					regexp: {
+					regexp: /\.(docx|doc|pdf|xlsx|xls)$/i,
+					message: 'Uploaded file is not a valid. Only docx,doc,xlsx,pdf files are allowed'
+					}
+				}
+            },
+			location:{
+			validators: {
+					notEmpty: {
+						message: 'location is required'
+					}
+				}
+            },
+			
 			profile_pic: {
                  validators: {
 					regexp: {
@@ -112,4 +220,6 @@ $(document).ready(function() {
      
 });
 
-</script>
+</script>				
+					
+					

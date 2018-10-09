@@ -48,16 +48,7 @@
 				<ul class="nav navbar-nav navbar-left in">
 					<li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
 				</ul>
-                 <form class="search-form-opened" action="#" method="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..." name="query">
-                        <span class="input-group-btn">
-                          <a href="javascript:;" class="btn submit">
-                             <i class="icon-magnifier"></i>
-                           </a>
-                        </span>
-                    </div>
-                </form>
+                
                 <!-- start mobile menu -->
                 <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
                     <span></span>
@@ -97,12 +88,12 @@
                              
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="<?php echo base_url('Agent/changepassword'); ?>">
+                                    <a href="<?php echo base_url('agent/changepassword'); ?>">
                                         <i class="icon-settings"></i> Change Password
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url('Agent/logout'); ?>">
+                                    <a href="<?php echo base_url('agent/logout'); ?>">
                                         <i class="icon-logout"></i> Log Out </a>
                                 </li>
 								

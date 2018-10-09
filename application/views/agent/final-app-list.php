@@ -66,7 +66,9 @@
                                 </div>
 								<div class="clearfix">&nbsp;</div>
 								
-								 <div class="modal fade" id="myModal" role="dialog">
+								
+		
+	<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -79,16 +81,28 @@
 			<div class="modal-body">
 			<div class="alert alert-danger alert-dismissible" id="errormsg" style="display:none;"></div>
 			  <div class="row">
+			  <div class="col-md-12">
+			  <form id="defaultForm" method="post" action="<?php echo base_url('agent/formpost'); ?>">
 				<div id="content1" class="col-xs-12 col-xl-12 form-group">
 				Are you sure ? 
 				</div>
-				<div class="col-xs-6 col-md-6">
-				  <button type="button" aria-label="Close" data-dismiss="modal" class="btn  blueBtn">Cancel</button>
+				
+				<div class="col-md-12">
+				
+				<input class="form-control"  type="text" name="reason" id="reason" placeholder="Enter reason" value="">
 				</div>
-				<div class="col-xs-6 col-md-6">
+				<div class="col-md-6">
+
                 <a href="?id=value" class="btn  blueBtn popid" style="text-decoration:none;float:right;"> <span aria-hidden="true">Ok</span></a>
 				</div>
+				<div class="col-md-6">
+				  <button type="button" aria-label="Close" data-dismiss="modal" class="btn blueBtn">Cancel</button>
+				</div>
+
+				</form>
+				</div>
 			 </div>
+			
 		  </div>
       </div>
       
@@ -99,7 +113,7 @@
                         </div>
                     </div>
 				
-                    
+                    </form>
                 </div>
             </div>
 			<script>
@@ -121,3 +135,41 @@ function adminstatus(id){
 	}
 }
 </script>
+<script>
+$(document).ready(function() {
+ 
+   $('#defaultForm').bootstrapValidator({
+//       
+        fields: {
+           
+			
+            
+			reason: {
+                validators: {
+					notEmpty: {
+						message: 'reason is required'
+					}
+				}
+            }
+			
+           
+           
+			
+        }
+    });
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+        $('#defaultForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+	
+});
+
+
+</script>
+
+
+
