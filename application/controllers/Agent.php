@@ -181,9 +181,9 @@ class Agent extends CI_Controller
 				
 					'reason'=>isset($post['reason'])?$post['reason']:'',
 					);
-					//echo'<pre>';print_r($save_data);exit;
-				$add=$this->Agent_model->save_reason($save_data);
-			
+					
+				//$add=$this->Agent_model->save_reason($save_data);
+			//echo'<pre>';print_r($add);exit;
 			
 		          
 		

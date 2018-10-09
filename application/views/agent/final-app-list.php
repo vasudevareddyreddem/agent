@@ -27,6 +27,7 @@
 												
                                             </tr>
                                         </thead>
+										<?php if(isset($appointments) && count($appointments)>0){ ?>
                                         <?php $cnt=1;foreach($appointments as $list){ ?>
 										
                                             <tr>
@@ -62,6 +63,9 @@
                                             </tr>
 											<?php $cnt++;} ?>
                                         </tbody>
+										<?php } else{ ?>
+								<div>No data available</div>
+								<?php } ?>
                                     </table>
                                 </div>
 								<div class="clearfix">&nbsp;</div>
@@ -92,9 +96,11 @@
                             </div>
                             <br>
                             <div class="col-lg-12">
-                                <a href="?id=value" class="btn blueBtn popid"> <span aria-hidden="true">Ok</span></a>
+                                <a href="?id=value" class="btn blueBtn popid"><span aria-hidden="true">Ok</span></a>
                                 <button type="button" aria-label="Close" data-dismiss="modal" class="btn blueBtn float-right">Cancel</button>
                             </div>
+							<button type="submit" class="btn btn-primary" name="Submit" value="Submit">Submit</button>
+
                         </form>
                     </div>
                 </div>
