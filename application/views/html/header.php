@@ -11,9 +11,8 @@
 	<!-- icons -->
     <link href="<?php echo base_url(); ?>assets/vendor/assets/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/vendor/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><!--bootstrap -->
-    <link href="<?php echo base_url(); ?>assets/vendor/assets/tether/css/tether.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--bootstrap -->
 	<link href="<?php echo base_url(); ?>assets/vendor/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo base_url(); ?>assets/vendor/css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
@@ -22,14 +21,11 @@
 	<link rel="<?php echo base_url(); ?>assets/vendor/stylesheet" href="css/material_style.css">
 	<!-- Theme Styles -->
     <link href="<?php echo base_url(); ?>assets/vendor/css/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/vendor/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/vendor/css/style.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/vendor/css/custom.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/vendor/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/vendor/css/theme-color.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo base_url(); ?>assets/vendor/assets/select2/css/select2.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/vendor/assets/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-	  <script src="<?php echo base_url(); ?>assets/vendor/assets/jquery.min.js" ></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/assets/jquery.min.js" ></script>
     
  </head>
  <!-- END HEAD -->
