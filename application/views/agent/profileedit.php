@@ -17,7 +17,7 @@
         <div class="page-bar">
             <div class="page-title-breadcrumb">
                 <div class=" pull-left">
-                    <div class="page-title">Profile Edit</div>
+                    <div class="page-title"><strong>Profile Edit</strong></div>
                 </div>
             </div>
         </div>
