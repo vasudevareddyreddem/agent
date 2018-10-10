@@ -1,5 +1,17 @@
 <?php //echo '<pre>';print_r($admin_detail);exit; ?>
-
+<style>
+body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #292b2c;
+    background-color: transparent;;
+}
+.help-block{
+	color:red;
+}
+</style>
 <div class="page-content-wrapper">
                 <div class="page-content" >
 						<div class="page-bar">
