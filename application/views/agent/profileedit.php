@@ -103,8 +103,8 @@ $(document).ready(function() {
         
         fields: {
             
-            name: {
-                 validators: {
+           name: {
+                validators: {
 					notEmpty: {
 						message: 'Name is required'
 					},
@@ -114,18 +114,7 @@ $(document).ready(function() {
 					}
 				}
             },
-			 mobile_number: {
-                validators: {
-					notEmpty: {
-						message: 'Mobile Number is required'
-					},
-					regexp: {
-					regexp:  /^[0-9]{10,14}$/,
-					message:'Mobile Number must be 10 to 14 digits'
-					}
-				
-				}
-            },email_id: {
+			 email_id: {
                 validators: {
 					notEmpty: {
 						message: 'Email is required'
@@ -136,6 +125,20 @@ $(document).ready(function() {
 					}
 				}
             },
+                mobile_number: {
+                 validators: {
+					notEmpty: {
+						message: 'Mobile Number is required'
+					},
+					regexp: {
+					regexp:  /^[0-9]{10}$/,
+					message:'Mobile Number must be 10 digits'
+					}
+				
+				}
+            },
+			
+			
 			
 			address: {
                  validators: {
@@ -152,7 +155,9 @@ $(document).ready(function() {
 			bank_account: {
                  validators: 
 					{
-					    
+					 notEmpty: {
+						message: 'Bank Account is required'
+					},   
 						regexp: 
 						{
 					     regexp:  /^[0-9]{9,16}$/,
@@ -174,7 +179,9 @@ $(document).ready(function() {
             },
 			ifsccode: {
                  validators: {
-					
+					notEmpty: {
+						message: 'IFSC Code is required'
+					},
 					regexp: {
 					 regexp: /^[A-Za-z0-9]{4}\d{7}$/,
 					message: 'IFSC Code must be alphanumeric'
