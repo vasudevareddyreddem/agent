@@ -162,16 +162,16 @@ $(document).ready(function() {
             },
 			
 			bank_name: {
-                 validators: {
-					
+                  validators: {
+					notEmpty: {
+						message: 'Bank Name is required'
+					},
 					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message:' Name of the bank wont allow <> [] = % '
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Bank Name can only consist of alphanumeric, space and dot'
 					}
-				
 				}
             },
-			
 			ifsccode: {
                  validators: {
 					
@@ -183,10 +183,12 @@ $(document).ready(function() {
             },
 			bank_holder_name:{
 			 validators: {
-					
+					notEmpty: {
+						message: 'Bank Holder Name is required'
+					},
 					regexp: {
-					regexp: /^[a-zA-Z ]+$/,
-					message: 'Bank Holder Name can only consist of alphabets and space'
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Bank Holder Name can only consist of alphanumeric, space and dot'
 					}
 				}
             },
