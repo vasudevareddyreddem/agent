@@ -26,24 +26,27 @@
                                                
                                             </tr>
                                         </thead>
-                                        <tbody>
-										<?php if(isset($patient_history) && count($patient_history)>0){ ?>
-										<?php  foreach($patient_history as $list){?>
-										<?php $cnt=1; foreach($list['patient_history_list'] as $li){ ?>
+                                       <tbody>
+									   <?php if(isset($patient_history) && count($patient_history)>0){ ?>
+										<?php $cnt=1; foreach($patient_history as $list){?>
                                             <tr>
                                                 <td><?php echo $cnt;?></td>
-                                               <td><?php echo $li['patinet_name']; ?></td>
-                                                <td><?php echo $li['mobile']; ?></td>
-                                                <td><?php echo $li['hos_bas_name']; ?></td>
-                                                 <td><?php echo $li['t_name']; ?></td> 
-                                                <td><?php echo $li['date']; ?>&nbsp;<?php echo $li['time']; ?></td>
-                                                
+                                               <td><?php echo $list['patinet_name']; ?></td>
+                                                <td><?php echo $list['mobile']; ?></td>
+                                                <td>
+												<?php foreach($list['hospital_list'] as $li){?>
+												<?php echo $li['hos_bas_name'];?>
+												
+												<?php }?>
+												</td>
+                                                 <td><?php echo $list['t_name']; ?></td> 
+                                                <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
+                                                <td><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?></td>
                                             </tr>
                                            
                                             
                                            
 										<?php $cnt++;} ?>
-										<?php }?>
                                         </tbody>
 										<?php } else{ ?>
 								<div>No data available</div>

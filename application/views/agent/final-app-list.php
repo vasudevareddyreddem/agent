@@ -23,8 +23,8 @@
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
                                                 <th>Appointment Date&Time </th>
+												<th>Status</th>
 												<th>Action</th>
-												
                                             </tr>
                                         </thead>
 										<?php if(isset($appointments) && count($appointments)>0){ ?>
@@ -41,30 +41,31 @@
 												</td>
                                                  <td><?php echo $list['t_name']; ?></td> 
                                                 <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
-												
-                                                   <td class="valigntop">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
+								   <td><?php  if($list['event_status']==1){  echo "Recived";}else if($list['event_status']==2){  echo "Not Recived";}?></td>
+												<td>
+								   <div class="btn-group">
+                                             <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                             <i class="fa fa-angle-down"></i>
+                                             </button>
+                                             <ul class="dropdown-menu pull-left" role="menu" style="padding:5px;">
+											 
+                                                             <li>
+															
+                                                                <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal2">
+                                                                    <i class="fa fa-trash-edit"><?php ?></i>Recived</a>
                                                            
-                                                           
-															<li>
-															<?php if($list['event_status']==1){  ?>
+															
+															 
+													           <li>
+															   
                                                                 <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
-                                                                    <i class="fa fa-edit"></i><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?> </a>
-                                                            <?php }else{ ?>
-															   <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModalrecived">
-                                                                    <i class="fa fa-edit"></i><?php if($list['event_status']==1){ echo "Received";}else{ echo "Not Received"; } ?> </a>
-                                                           
-															<?php } ?>
-															</li>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                </td>			
-												  	
+                                                                    <i class="fa fa-trash-edit"></i>Not Recived</a>
+															
+                                                            </li>
+															
+                                             </ul>
+                                          </div>
+										  </td>
 
                                             </tr>
 											<?php $cnt++;} ?>
@@ -78,7 +79,7 @@
 								
 								
 		
-<div class="modal fade" id="myModalrecived" role="dialog">
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -116,7 +117,7 @@
 
     </div>
 </div>
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal2" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -177,6 +178,10 @@ function adminstatus(id){
 			$('#content1').html('Are you sure you want to Received');
 	}
 }
+
+
+
+
 </script>
 <script>
 $(document).ready(function() {
