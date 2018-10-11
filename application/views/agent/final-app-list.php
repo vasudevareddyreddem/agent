@@ -23,7 +23,7 @@
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
                                                 <th>Appointment Date&Time </th>
-												<th>Status</th>
+												<th>Patient Appointment</th>
 												<th>Action</th>
                                             </tr>
                                         </thead>
@@ -52,14 +52,14 @@
                                                              <li>
 															
                                                                 <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal2">
-                                                                    <i class="fa fa-trash-edit"><?php ?></i>Recived</a>
-                                                           
+                                                                <i class="fa fa-thumbs-up"><?php ?></i>Recived</a>
+                                                           </li>
 															
 															 
 													           <li>
 															   
                                                                 <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
-                                                                    <i class="fa fa-trash-edit"></i>Not Recived</a>
+                                                                <i class="fa fa-thumbs-down"></i>Not Recived</a>
 															
                                                             </li>
 															
