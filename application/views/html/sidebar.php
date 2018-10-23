@@ -24,17 +24,17 @@
 	                                </div>
 	                            </div>
 	                        </li>
-                            <li class="nav-item  ">
+                            <li class="nav-item <?php if($this->uri->segment(2)=='patient'){ echo "active";} ?>">
 	                            <a href="<?php echo base_url('agent/patient'); ?>" class="nav-link "> <i class="material-icons">person</i>
 	                                <span class="title">Patient List</span> <span class="arrow"></span>
 	                            </a>
 	                        </li>
-                            <li class="nav-item  ">
+                            <li class="nav-item <?php if($this->uri->segment(2)=='finalappointment'){ echo "active";} ?> ">
 	                            <a href="<?php echo base_url('agent/finalappointment'); ?>" class="nav-link "> <i class="material-icons">person</i>
 	                                <span class="title">Finalized Appointment List</span> <span class="arrow"></span>
 	                            </a>
 	                        </li>
-                            <li class="nav-item  ">
+                            <li class="nav-item <?php if($this->uri->segment(2)=='patientlist'){ echo "active";} ?> ">
 	                            <a href="<?php echo base_url('agent/patientlist'); ?>" class="nav-link "> <i class="material-icons">person</i>
 	                                <span class="title">Patient History</span> <span class="arrow"></span>
 	                            </a>

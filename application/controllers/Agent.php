@@ -132,8 +132,11 @@ class Agent extends CI_Controller
 		if($this->session->userdata('userdetails'))
 			{
 				$admindetails=$this->session->userdata('userdetails');	
-				$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
-				$data['patient_history']=$this->Agent_model->patient_history_list($user_details['location']);
+				
+				$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);	
+			$data['patient_history']=$this->Agent_model->patient_history_list($user_details['location']);
+				
+				
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('agent/patient-history',$data);
 				$this->load->view('html/footer');

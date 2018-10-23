@@ -8,8 +8,7 @@
 								<div class="page-title">Profile Details</div>
 							 </div>
 							 <ol class="breadcrumb page-breadcrumb pull-right">
-								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="<?php echo base_url('dashboard'); ?>">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
-								</li>
+								
 								
 								<li class="active">Profile Details</li>
 							 </ol>
