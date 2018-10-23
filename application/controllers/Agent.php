@@ -117,6 +117,7 @@ class Agent extends CI_Controller
 				$admindetails=$this->session->userdata('userdetails');
 				$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
 				$data['location_wise_list']=$this->Agent_model->get_location_wise_patient_list($user_details['location']);
+				//echo '<pre>';print_r($data);exit;
 				$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();	
 				$this->load->view('agent/patient-list',$data);
 				$this->load->view('html/footer');
@@ -221,9 +222,9 @@ class Agent extends CI_Controller
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($event_status==1){
-								$this->session->set_flashdata('success',"Patient history successfully Not Received.");
+								$this->session->set_flashdata('success',"Patient successfully Not Received.");
 								}else{
-									$this->session->set_flashdata('success',"Patient history successfully Received.");
+									$this->session->set_flashdata('success',"Patient successfully Received.");
 								}
 								redirect('agent/finalappointment/');
 							}else{

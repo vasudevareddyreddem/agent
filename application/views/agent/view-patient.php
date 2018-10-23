@@ -23,17 +23,12 @@
                                     <td><?php echo $app_appointment_view_list['patinet_name']; ?></td>
                                     <td><?php echo $app_appointment_view_list['mobile']; ?></td>
                                     <td>
-                                        <ol>
-											<?php foreach($app_appointment_view_list['hospital_list'] as $li){ ?>
-												<?php if($li['status']==1){ ?>
-													  <li><?php echo $li['hos_bas_name']; ?> <i class="fas fa-circle fa-1x text-success"></i></li>
+												<?php if($app_appointment_view_list['status']==1){ ?>
+													 <?php echo $app_appointment_view_list['hos_bas_name']; ?> <i class="fa fa-circle fa-1x text-success"></i>
 
 												<?php }else{ ?>
-													<li><?php echo $li['hos_bas_name']; ?> <i class="fas fa-circle fa-1x text-danger"></i></li>
+													<?php echo $app_appointment_view_list['hos_bas_name']; ?> <i class="fa fa-circle fa-1x text-danger"></i>
 												<?php  }?>
-												
-										   <?php }?>
-                                        </ol>
                                     </td>
                                     <td><?php echo $app_appointment_view_list['t_name']; ?></td>
                                      <td><?php echo $app_appointment_view_list['date']; ?>&nbsp;<?php echo $app_appointment_view_list['time']; ?></td>
