@@ -38,7 +38,7 @@
                 <div class="page-logo">
                     <a href="<?php echo base_url('Agent/patient'); ?>">
                     
-                    <span class="logo-default" >Agent Flow</span> </a>
+                    <span class="logo-default" >Medspace</span> </a>
                 </div>
                 <!-- logo end -->
 				<ul class="nav navbar-nav navbar-left in">

@@ -50,7 +50,7 @@ body {
 								'hash' => $this->security->get_csrf_hash()
 						); ?>
     <div class="box "style="padding:15px;">
-	<h1 class="page-header">Agent Login</h1>
+	<h1 class="page-header" >Executive Login  </h1>
 	<hr>
 						<div class="form-group">
                             <label class=" control-label">Email</label>
