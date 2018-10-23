@@ -23,7 +23,6 @@
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
                                                 <th>Appointment Date&Time </th>
-												<th>Patient Appointment</th>
 												<th>Action</th>
                                             </tr>
                                         </thead>
@@ -41,8 +40,7 @@
 												</td>
                                                  <td><?php echo $list['t_name']; ?></td> 
                                                 <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
-								   <td><?php  if($list['event_status']==1){  echo "Recived";}else if($list['event_status']==2){  echo "Not Recived";}?></td>
-												<td>
+								 <td>
 								   <div class="btn-group">
                                              <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                              <i class="fa fa-angle-down"></i>
@@ -52,14 +50,14 @@
                                                              <li>
 															
                                                                 <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal2">
-                                                                <i class="fa fa-thumbs-up"><?php ?></i>Recived</a>
+                                                                <i class="fa fa-thumbs-up"><?php ?></i> Received</a>
                                                            </li>
 															
 															 
 													           <li>
 															   
                                                                 <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
-                                                                <i class="fa fa-thumbs-down"></i>Not Recived</a>
+                                                                <i class="fa fa-thumbs-down"></i>Not Received</a>
 															
                                                             </li>
 															

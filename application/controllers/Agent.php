@@ -224,9 +224,9 @@ class Agent extends CI_Controller
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($event_status==1){
-								$this->session->set_flashdata('success',"Patient history successfully Not Received.");
+								$this->session->set_flashdata('success',"Patient succesfully not received");
 								}else{
-									$this->session->set_flashdata('success',"Patient history successfully Received.");
+									$this->session->set_flashdata('success',"Patient succesfully received");
 								}
 								redirect('agent/finalappointment/');
 							}else{
