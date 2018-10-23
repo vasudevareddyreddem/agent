@@ -23,7 +23,7 @@
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
                                                <th>Appointment Date&Time </th>
-                                               <th>Action</th>
+                                               <th>Status</th>
                                                
                                             </tr>
                                         </thead>
