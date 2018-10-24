@@ -227,12 +227,9 @@ class Agent extends CI_Controller
 								if($event_status==1){
 
 								$this->session->set_flashdata('success',"Patient succesfully not received");
-								}else{
-									$this->session->set_flashdata('success',"Patient succesfully received");
-
-								$this->session->set_flashdata('success',"Patient successfully Not Received.");
-								}else{
-									$this->session->set_flashdata('success',"Patient successfully Received.");
+								}
+								else{
+									$this->session->set_flashdata('success',"Patient successfully received.");
 
 								}
 								redirect('agent/finalappointment/');
