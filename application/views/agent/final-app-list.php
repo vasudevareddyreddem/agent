@@ -182,17 +182,17 @@ $(document).ready(function() {
 }
 function adminstatus1(id){
 	if(id==1){
-			$('#content1').html('Are you sure you want to  Received');
+			$('#content1').html('Are you sure patient is received');
 		
 	}if(id==2){
-			$('#content1').html('Are you sure you want to Received');
+			$('#content1').html('Are you sure patient is received');
 	}
 }function adminstatus(id){
 	if(id==1){
-			$('#content2').html('Are you sure you want to Not Received');
+			$('#content2').html('Are you sure patient is not received');
 		
 	}if(id==2){
-			$('#content1').html('Are you sure you want to Not Received');
+			$('#content1').html('Are you sure patient is not received');
 	}
 }
 
