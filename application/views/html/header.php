@@ -17,8 +17,6 @@
 	<link href="<?php echo base_url(); ?>assets/vendor/css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
 	 <link href="<?php echo base_url(); ?>assets/vendor/assets/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-	<link rel="<?php echo base_url(); ?>assets/vendor/stylesheet" href="assets/material/material.min.css">
-	<link rel="<?php echo base_url(); ?>assets/vendor/stylesheet" href="css/material_style.css">
 	<!-- Theme Styles -->
     <link href="<?php echo base_url(); ?>assets/vendor/css/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/vendor/css/style.css" rel="stylesheet" type="text/css" />
