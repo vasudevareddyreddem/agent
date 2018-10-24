@@ -117,6 +117,7 @@ class Agent extends CI_Controller
 				$admindetails=$this->session->userdata('userdetails');
 				$user_details=$this->Agent_model->get_basic_agent_details_location($admindetails['e_id']);
 				$data['location_wise_list']=$this->Agent_model->get_location_wise_patient_list($user_details['location']);
+				//echo '<pre>';print_r($data);exit;
 				$data['app_appointment_list']=$this->Agent_model->get_app_appointment_list();	
 				$this->load->view('agent/patient-list',$data);
 				$this->load->view('html/footer');
@@ -224,9 +225,12 @@ class Agent extends CI_Controller
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($event_status==1){
-								$this->session->set_flashdata('success',"Patient history successfully Not Received.");
-								}else{
-									$this->session->set_flashdata('success',"Patient history successfully Received.");
+
+								$this->session->set_flashdata('success',"Patient succesfully not received");
+								}
+								else{
+									$this->session->set_flashdata('success',"Patient successfully received.");
+
 								}
 								redirect('agent/finalappointment/');
 							}else{
@@ -283,7 +287,7 @@ class Agent extends CI_Controller
 				}
 				
 			}else{
-				$this->session->set_flashdata('error',"Old password are not matched");
+				$this->session->set_flashdata('error',"Old password didn't match");
 				redirect('agent/changepassword');
 			}
 				

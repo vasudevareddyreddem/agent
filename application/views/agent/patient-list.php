@@ -32,18 +32,8 @@
                                                 <td><?php echo $cnt; ?></td>
                                                 <td><?php echo $list['patinet_name']; ?></td>
                                                 <td><?php echo $list['mobile']; ?></td>
-                                                <td>
-												<?php if(isset($list['hospital_list']) && count($list['hospital_list'])>0){ ?>
-                                                    <ol>
-														<?php foreach($list['hospital_list'] as $li){ ?>
-                                                        <li><?php echo $li['hos_bas_name']; ?></li>
-														<?php } ?>
-                                                        
-                                                    </ol>
-												<?php } ?>
-                                                </td>
+                                                <td><?php  echo $list['hos_bas_name']; ?></td>
                                                 <td><?php echo $list['t_name']; ?></td>
-                                               
                                                 <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
                                                 <td class="valigntop">
                                                     <div class="btn-group">

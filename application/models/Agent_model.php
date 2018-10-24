@@ -138,19 +138,16 @@ class Agent_model extends CI_Model
 	
 	
 	public function get_app_appointment_view_list($p_id,$location){
-		$this->db->select('appointment_bidding_list.city,appointment_bidding_list.b_id,appointment_bidding_list.hos_id,appointment_bidding_list.department,appointment_bidding_list.specialist,appointment_bidding_list.patinet_name,appointment_bidding_list.mobile,appointment_bidding_list.date,appointment_bidding_list.time,treament.t_name,specialist.specialist_name,appointment_bidding_list.create_by,appointment_bidding_list.status')->from('appointment_bidding_list');
+		$this->db->select('appointment_bidding_list.city,appointment_bidding_list.b_id,appointment_bidding_list.hos_id,appointment_bidding_list.department,appointment_bidding_list.specialist,appointment_bidding_list.patinet_name,appointment_bidding_list.mobile,appointment_bidding_list.date,appointment_bidding_list.time,treament.t_name,specialist.specialist_name,appointment_bidding_list.create_by,appointment_bidding_list.status,hospital.hos_bas_name')->from('appointment_bidding_list');
 		//$this->db->select('appointment_bidding_list.*,treament.t_name,specialist.specialist_name,hospital.hos_bas_name')->from('appointment_bidding_list');
 		$this->db->join('treament', 'treament.t_id = appointment_bidding_list.department', 'left');
 		$this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
 		$this->db->join('hospital', 'hospital.hos_id = appointment_bidding_list.hos_id', 'left');
 	   $this->db->where('appointment_bidding_list.create_by',$p_id);
 	   $this->db->where('appointment_bidding_list.city',$location);
-		$return=$this->db->get()->row_array();
+	   return $this->db->get()->row_array();
 
-		$lists=$this->get_hospital_names_with_id($p_id,$return['city']);
-			//echo '<pre>';print_r($lists);exit;
-		$data=$return;
-		$data['hospital_list']=$lists;
+		
 		if(!empty($data)){
 			
 			return $data;
@@ -172,22 +169,14 @@ class Agent_model extends CI_Model
 	
 	
 	public  function get_location_wise_patient_list($location){
-		$this->db->select('appointment_bidding_list.b_id,appointment_bidding_list.city,appointment_bidding_list.hos_id,appointment_bidding_list.department,appointment_bidding_list.specialist,appointment_bidding_list.patinet_name,appointment_bidding_list.mobile,appointment_bidding_list.date,appointment_bidding_list.time,treament.t_name,specialist.specialist_name,appointment_bidding_list.create_by')->from('appointment_bidding_list');
+		$this->db->select('appointment_bidding_list.b_id,appointment_bidding_list.city,appointment_bidding_list.hos_id,appointment_bidding_list.department,appointment_bidding_list.specialist,appointment_bidding_list.patinet_name,appointment_bidding_list.mobile,appointment_bidding_list.date,appointment_bidding_list.time,treament.t_name,specialist.specialist_name,appointment_bidding_list.create_by,hospital.hos_bas_name')->from('appointment_bidding_list');
 		$this->db->join('treament', 'treament.t_id = appointment_bidding_list.department', 'left');
 		$this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
 		$this->db->join('hospital', 'hospital.hos_id = appointment_bidding_list.hos_id', 'left');
 		
 		$this->db->where('appointment_bidding_list.city',$location);
-		$this->db->group_by('appointment_bidding_list.patinet_name');
-		$return=$this->db->get()->result_array();
-		foreach($return as $list){
-			$lists=$this->get_hospital_names($list['patinet_name'],$location);
-			//echo '<pre>';print_r($lists);exit;
-			$data[$list['b_id']]=$list;
-			$data[$list['b_id']]['hospital_list']=$lists;
-			
-		}
-		
+		//$this->db->group_by('appointment_bidding_list.patinet_name');
+		return $this->db->get()->result_array();
 		if(!empty($data)){
 			
 			return $data;
@@ -280,7 +269,7 @@ class Agent_model extends CI_Model
 		
 		$this->db->where('appointment_bidding_list.city',$location);
 		$this->db->where('appointment_bidding_list.status',1);
-		$this->db->group_by('appointment_bidding_list.patinet_name');
+		//$this->db->group_by('appointment_bidding_list.patinet_name');
 		$return=$this->db->get()->result_array();
 		foreach($return as $list){
 			$lists=$this->get_hospital_final_appinment($list['patinet_name'],$location);
@@ -314,28 +303,28 @@ class Agent_model extends CI_Model
 	}
 	
 	public function patient_history_list($location){
-	$this->db->select('appointment_bidding_list.b_id,appointment_bidding_list.city,appointment_bidding_list.hos_id,appointment_bidding_list.department,appointment_bidding_list.specialist,appointment_bidding_list.patinet_name,appointment_bidding_list.mobile,appointment_bidding_list.date,appointment_bidding_list.time,treament.t_name,specialist.specialist_name,appointment_bidding_list.create_by,appointment_bidding_list.event_status')->from('appointment_bidding_list');
-		$this->db->join('treament', 'treament.t_id = appointment_bidding_list.department', 'left');
-		$this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
-		$this->db->join('hospital', 'hospital.hos_id = appointment_bidding_list.hos_id', 'left');
-		$this->db->where('appointment_bidding_list.city',$location);
-		$this->db->where('appointment_bidding_list.status',1);
-		$this->db->group_by('appointment_bidding_list.patinet_name');
-		$return=$this->db->get()->result_array();
-		foreach($return as $list){
-			$lists=$this->get_hospital_patient_list($list['patinet_name'],$location);
-			//echo '<pre>';print_r($lists);exit;
-			$data[$list['b_id']]=$list;
-			$data[$list['b_id']]['hospital_list']=$lists;
-			
-		}
-		
-		if(!empty($data)){
-			
-			return $data;
-			
-		}
-	}
+ $this->db->select('appointment_bidding_list.b_id,appointment_bidding_list.city,appointment_bidding_list.hos_id,appointment_bidding_list.department,appointment_bidding_list.specialist,appointment_bidding_list.patinet_name,appointment_bidding_list.mobile,appointment_bidding_list.date,appointment_bidding_list.time,treament.t_name,specialist.specialist_name,appointment_bidding_list.create_by,appointment_bidding_list.event_status')->from('appointment_bidding_list');
+  $this->db->join('treament', 'treament.t_id = appointment_bidding_list.department', 'left');
+  $this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
+  $this->db->join('hospital', 'hospital.hos_id = appointment_bidding_list.hos_id', 'left');
+  $this->db->where('appointment_bidding_list.city',$location);
+  $this->db->where('appointment_bidding_list.status',1);
+  $this->db->group_by('appointment_bidding_list.patinet_name');
+  $return=$this->db->get()->result_array();
+  foreach($return as $list){
+   $lists=$this->get_hospital_patient_list($list['patinet_name'],$location);
+   //echo '<pre>';print_r($lists);exit;
+   $data[$list['b_id']]=$list;
+   $data[$list['b_id']]['hospital_list']=$lists;
+   
+  }
+  
+  if(!empty($data)){
+   
+   return $data;
+   
+  }
+ }
 	
 	public  function get_hospital_patient_list($name,$loca){
 		$this->db->select('hospital.hos_bas_name')->from('appointment_bidding_list');

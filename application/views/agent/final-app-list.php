@@ -23,7 +23,10 @@
                                                 <th>Hospital Name</th>
                                                 <th>Department</th>
                                                 <th>Appointment Date&Time </th>
-												<th>Status</th>
+
+
+												<!--<th>Patient Appointment</th>-->
+
 												<th>Action</th>
                                             </tr>
                                         </thead>
@@ -41,8 +44,12 @@
 												</td>
                                                  <td><?php echo $list['t_name']; ?></td> 
                                                 <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
-								   <td><?php  if($list['event_status']==1){  echo "Recived";}else if($list['event_status']==2){  echo "Not Recived";}?></td>
+
+								
+
+								<!--   <td><?php // if($list['event_status']==1){  echo "Recived";}else if($list['event_status']==2){  echo "Not Recived";}?></td>-->
 												<td>
+
 								   <div class="btn-group">
                                              <button class="btn btn-xs deepPink-bgcolor dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                              <i class="fa fa-angle-down"></i>
@@ -51,15 +58,18 @@
 											 
                                                              <li>
 															
-                                                                <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal2">
-                                                                    <i class="fa fa-trash-edit"><?php ?></i>Recived</a>
-                                                           
+
+                                                               
+                                                                <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus1('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal2">
+                                                                <i class="fa fa-thumbs-up"><?php ?></i>Received</a>
+
+                                                           </li>
 															
 															 
 													           <li>
 															   
                                                                 <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['b_id'])).'/'.base64_encode(htmlentities($list['event_status']));?>');adminstatus('<?php echo $list['event_status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
-                                                                    <i class="fa fa-trash-edit"></i>Not Recived</a>
+                                                                <i class="fa fa-thumbs-down"></i>Not Received</a>
 															
                                                             </li>
 															
@@ -94,7 +104,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <form id="defaultForm" method="post" action="<?php echo base_url('agent/formpost'); ?>">
-                            <div id="content1" class="col-lg-12 form-group">
+                            <div id="content2" class="col-lg-12 form-group">
                                 Are you sure ?
                             </div>
 
@@ -170,12 +180,19 @@ $(document).ready(function() {
 	$(".popid").attr("href","<?php echo base_url('agent/status/'); ?>"+"/"+id);
 	$("#b_id").val(id);
 }
-function adminstatus(id){
+function adminstatus1(id){
 	if(id==1){
-			$('#content1').html('Are you sure you want to Not Received');
+			$('#content1').html('Are you sure you want to  Received');
 		
 	}if(id==2){
 			$('#content1').html('Are you sure you want to Received');
+	}
+}function adminstatus(id){
+	if(id==1){
+			$('#content2').html('Are you sure you want to Not Received');
+		
+	}if(id==2){
+			$('#content1').html('Are you sure you want to Not Received');
 	}
 }
 
