@@ -45,9 +45,9 @@
                                                  <td><?php echo $list['t_name']; ?></td> 
                                                 <td><?php echo $list['date']; ?>&nbsp;<?php echo $list['time']; ?></td>
 
-								 <td>
+								
 
-								<!--   <td><?php  if($list['event_status']==1){  echo "Recived";}else if($list['event_status']==2){  echo "Not Recived";}?></td>-->
+								<!--   <td><?php // if($list['event_status']==1){  echo "Recived";}else if($list['event_status']==2){  echo "Not Recived";}?></td>-->
 												<td>
 
 								   <div class="btn-group">
