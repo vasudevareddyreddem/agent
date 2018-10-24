@@ -173,7 +173,7 @@ class Agent_model extends CI_Model
 		$this->db->join('treament', 'treament.t_id = appointment_bidding_list.department', 'left');
 		$this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
 		$this->db->join('hospital', 'hospital.hos_id = appointment_bidding_list.hos_id', 'left');
-		
+		$this->db->where('appointment_bidding_list.status',0);
 		$this->db->where('appointment_bidding_list.city',$location);
 		//$this->db->group_by('appointment_bidding_list.patinet_name');
 		return $this->db->get()->result_array();
@@ -269,6 +269,7 @@ class Agent_model extends CI_Model
 		
 		$this->db->where('appointment_bidding_list.city',$location);
 		$this->db->where('appointment_bidding_list.status',1);
+		$this->db->where('appointment_bidding_list.event_status',0);
 		//$this->db->group_by('appointment_bidding_list.patinet_name');
 		$return=$this->db->get()->result_array();
 		foreach($return as $list){

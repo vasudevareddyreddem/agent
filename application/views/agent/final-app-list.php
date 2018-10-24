@@ -181,19 +181,13 @@ $(document).ready(function() {
 	$("#b_id").val(id);
 }
 function adminstatus1(id){
-	if(id==1){
-			$('#content1').html('Are you sure patient is received');
+	$('#content1').html('Are you sure patient is received');
 		
-	}if(id==2){
-			$('#content1').html('Are you sure patient is received');
-	}
+	
 }function adminstatus(id){
-	if(id==1){
-			$('#content2').html('Are you sure patient is not received');
+	$('#content2').html('Are you sure patient is not received');
 		
-	}if(id==2){
-			$('#content1').html('Are you sure patient is not received');
-	}
+	
 }
 
 
