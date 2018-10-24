@@ -98,10 +98,10 @@ class Agent extends CI_Controller
 	{
 		if($this->session->userdata('userdetails'))
 		{
-			$p_id=base64_decode($this->uri->segment(3));
+			$b_id=base64_decode($this->uri->segment(3));
 			$location=base64_decode($this->uri->segment(4));
 
-			$data['app_appointment_view_list']=$this->Agent_model->get_app_appointment_view_list($p_id,$location);
+			$data['app_appointment_view_list']=$this->Agent_model->get_app_appointment_view_list($b_id,$location);
 			//echo '<pre>';print_r($data);exit;
 			$this->load->view('agent/view-patient',$data);
 			$this->load->view('html/footer');

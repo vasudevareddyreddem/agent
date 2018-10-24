@@ -143,7 +143,7 @@ class Agent_model extends CI_Model
 		$this->db->join('treament', 'treament.t_id = appointment_bidding_list.department', 'left');
 		$this->db->join('specialist', 'specialist.s_id = appointment_bidding_list.specialist', 'left');
 		$this->db->join('hospital', 'hospital.hos_id = appointment_bidding_list.hos_id', 'left');
-	   $this->db->where('appointment_bidding_list.create_by',$p_id);
+	   $this->db->where('appointment_bidding_list.b_id',$p_id);
 	   $this->db->where('appointment_bidding_list.city',$location);
 	   return $this->db->get()->row_array();
 
