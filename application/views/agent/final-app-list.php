@@ -39,7 +39,7 @@
                                                 <td><?php echo $list['mobile']; ?></td>
                                                 <td>
 												<?php foreach($list['hospital_list'] as $li){ ?>
-												<?php echo $li['hos_bas_name']; ?>
+												<?php echo $li['hos_bas_name'].'<br>'; ?>
 												<?php } ?>
 												</td>
                                                  <td><?php echo $list['t_name']; ?></td> 
