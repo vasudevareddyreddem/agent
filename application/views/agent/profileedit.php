@@ -83,21 +83,16 @@
                                         <label for="email">Profile Pic</label>
                                         <input type="file" id="profile_pic" name="profile_pic" class="form-control">
                                     </div>
-
-                                    <div class="form-actions">
-                                        <div class="row">
-                                            <div class="offset-md-11 col-md-1">
-                                                <button type="submit" class="btn btn-info">Update</button>
-                                            </div>
-                                        </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label for="">&nbsp;</label>
+                                        <button type="submit" class="btn btn-info pull-right">Update</button>
                                     </div>
+                                    
                                 </div>
                             </form>
 
                         </div>
-
-
-
 
                     </div>
                 </div>
